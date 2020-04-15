@@ -1,0 +1,25 @@
+<div class="demo-md-panel" layout-fill layout="column">
+    <md-content>
+        <div class="header md-accent-bg layout-align-space-between-stretch headerEureca" layout="column" layout-align="space-between">
+            <div layout-align="space-between" class="layout-align-space-between-stretch">
+                <div>
+                    <span class="md-display-1 font-weight-300">ENTRE EM CONTATO COM A GENTE</span>
+                </div>
+            </div>
+        </div>
+        <form name="emailForm" layout-fill ng-submit="enviarEmail(pessoa)" data-ng-init="carregarEmail()">
+            <md-content class="md-padding conteudo" style="width: 50%; margin: 51px auto;">
+            	<md-input-container class="md-block" flex-gt-sm>
+                	<label>E-mail</label>
+                	<input ng-model="pessoa.email">
+              </md-input-container>
+                <md-input-container class="md-block" flex-gt-sm>
+                    <label>Mensagem</label>
+                    <textarea ng-model="pessoa.mensagem" class="materialize-textarea"></textarea>
+              </md-input-container>
+              <md-button class="md-raised md-primary" type="submit" style="width: 145px; height: 50px; margin: 0 auto;">
+                    <label>Enviar</label>
+              </md-button>
+          </form>
+    </md-content>
+</div>

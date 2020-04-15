@@ -1,0 +1,53 @@
+<md-dialog class="col-lg-6 col-md-6 col-sm-12 col-cs-12">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-cs-12">
+            <div>
+                <form name="formAlterarSenha" class="ng-cloak">
+                    <md-dialog-content>
+                        <div class="md-dialog-content">
+                            <div flex="100" layout="column">
+                                <div class="alert" ng-class="alerta.tipo" ng-show="alerta" flex="100" layout-align="center center">
+                                    <span>{{alerta.mensagem}}</span>
+                                </div>
+                                <div class="md-accordion md-padding" layout-align="center center" layout="column">
+                                    <p style="font-size: 44px">Alterar senha </p>
+                                    <div style="min-width: 100%;">
+                                        <md-input-container class="md-block">
+                                            <input required name="senhaAtual" style="width: 100%" ng-model="senhas.senhaAtual" placeholder="Senha atual" type="password">
+                                            <div ng-messages="perfilForm.senhaAtual.$error" role="alert">
+                                                <div ng-message-exp="['required']">
+                                                    Todos os campos precisam ser preenchidos.
+                                                </div>
+                                            </div>
+                                        </md-input-container>
+                                        <md-input-container class="md-block">
+                                            <input required name="novaSenha" style="width: 100%" ng-model="senhas.novaSenha" placeholder="Nova senha" type="password">
+                                            <div ng-messages="perfilForm.novaSenha.$error" role="alert">
+                                                <div ng-message-exp="['required']">
+                                                    Todos os campos precisam ser preenchidos.
+                                                </div>
+                                            </div>
+                                        </md-input-container>
+                                        <md-input-container class="md-block">
+                                            <input required name="confirmaSenha" style="width: 100%" ng-model="senhas.confirmaSenha" placeholder="Repita a nova senha" type="password">
+                                            <div ng-messages="perfilForm.confirmaSenha.$error" role="alert">
+                                                <div ng-message-exp="['required']">
+                                                    Todos os campos precisam ser preenchidos.
+                                                </div>
+                                            </div>
+                                        </md-input-container>
+                                    </div>
+                                    <div flex="100" layout="column" layout-align="center center">
+                                        <md-button class="md-raised md-primary btnPrincipais" style="width: 90%;" ng-disabled="formAlterarSenha.$invalid" ng-click="alterarSenha(senhas)">
+                                            <md-icon class="material-icons">&#xE161;</md-icon> Alterar minha senha</md-button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </md-dialog-content>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</md-dialog>

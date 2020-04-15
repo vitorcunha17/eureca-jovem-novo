@@ -1,0 +1,44 @@
+<div class="demo-md-panel container" layout="column"  style="margin-left: 20px;">
+    <div class="md-padding">
+        <h2 class="tituloOp">Oportunidades</h2>
+        <p>Escolha a oportunidade que mais se encaixa com você :)</p>
+        <div class="linhaAzul"></div>
+        <div ng-show="opEstagio" ng-cloak ng-init="carregarEstagios(0)">
+            <h2 class="tituloOp">Estágio</h2>
+            <p>Encontre sua oportunidade de estágio aqui.</p>
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" ng-repeat="op in opEstagio">
+                    <md-card class="op-card" style="background-image: url('{{diretorioImagens}}/oportunidades/{{op.idOp}}/{{op.capa}}');">
+                        <md-card-content>
+                            <div class="op-card-titulo">
+                                {{op.nome}}
+                            </div>
+                        </md-card-content>
+                        <md-card-actions class="op-card-action" layout="row" layout-align="center center">
+                            <md-button class="op-card-button" ng-click="detalhesOportunidade(op.url)">INSCREVA-SE</md-button>
+                        </md-card-actions>
+                    </md-card>
+                </div>
+            </div>
+        </div>
+        <div ng-show="opTrainee" ng-cloak ng-init="carregarTrainees(1)">
+            <h2 class="tituloOp">Trainee</h2>
+            <p>Encontre sua oportunidade de trainee aqui.</p>
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" ng-repeat="op in opEstagio">
+                    <md-card class="op-card" style="background-image: url('{{diretorioImagens}}/oportunidades/{{op.idOp}}/{{op.capa}}');">
+                        <md-card-content>
+                            <div class="op-card-titulo">
+                                {{op.nome}}
+                            </div>
+                        </md-card-content>
+                        <md-card-actions class="op-card-action" layout="row" layout-align="center center">
+                            <md-button class="op-card-button" ng-click="detalhesOportunidade(op.url)">INSCREVA-SE</md-button>
+                        </md-card-actions>
+                    </md-card>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

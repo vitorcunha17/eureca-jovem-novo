@@ -1,0 +1,43 @@
+.op-card {
+    width: 290px;
+    height: 315px;
+    position: relative;
+    border-radius: 20px;
+    background-color: #ccc;
+    
+}
+
+.op-card-titulo {
+    position: relative;
+    top: 100px;
+    background-color: #0f1b6b;
+    color: #fff;
+    font-weight: bold;
+    padding: 4px;
+    text-align: center;
+
+}
+
+.op-card-action {
+    margin: 0;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+
+}
+
+.op-card-button {
+    width: 100%;
+    background: #18a8f1;
+    color: #fff;
+    height: 72px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.op-card-button:hover {
+    background: #324aeb !important;
+}

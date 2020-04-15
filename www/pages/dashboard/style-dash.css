@@ -1,0 +1,74 @@
+.minha-op-card {
+    width: 250px;
+    height: 280px; 
+    border-radius: 20px;
+    background-color: #0f1b6b;
+    position: relative;
+    
+}
+
+.minha-op-card-knob {
+    position: relative;
+    top: 10px;
+    color: #fff;
+    padding: 4px;
+    text-align: center;
+}
+
+.minha-op-card-titulo {
+    position: relative;
+    top: 10px;
+    color: #fff;
+    padding: 4px;
+    text-align: center;
+
+}
+
+
+.minha-op-card-action {
+    margin: 0;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+
+}
+
+.minha-op-card-button {
+    width: 100%;
+    color: #fff;
+    height: 60px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+
+.minha-op-card-nova {
+    width: 250px;
+    height: 280px; 
+    border-radius: 20px;
+    background-color: #ccc;
+    position: relative;
+    
+}
+
+.minha-op-card-nova-add {
+    color: #616161;
+    font-size: 70px;
+    text-align: center;
+    position: relative;
+    top: 50px;
+}
+
+.minha-op-card-nova-action {
+    margin: 0;
+    position: absolute;
+    bottom: 40px;
+    left: 0;
+    width: 100%;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+
+}

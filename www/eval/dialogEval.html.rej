@@ -1,0 +1,28 @@
+diff a/www/eval/dialogEval.html b/www/eval/dialogEval.html	(rejected hunks)
+@@ -0,0 +1,25 @@
++<md-dialog flex="80">
++    <form class="ng-cloak" name="formEval">
++        <md-toolbar class="md-theme-light">
++            <h1 class="md-toolbar-tools">Auto avaliação</h1>
++        </md-toolbar>
++        <md-content layout-padding layout="column" ng-controller="evalCtrl">
++                <h2 class="tituloOp">Trainee PepsiCo Mexico</h2>
++                <p style="margin-bottom: 0px">Edite detalhes do seu perfil e visualize as oportunidades que você se inscreveu.</p>
++                <div style="border-bottom: 2px solid #c9ebfd; margin-top: 0px; width: 246px;"></div>
++                <br><br>
++            <div ng-repeat="comp in questionarioEval.competencias" style="border-bottom: 2px solid #c9ebfd;">
++                <h3 class="tituloOp">{{comp.competencia}}</h3>
++                <div ng-repeat="indicador in comp.indicadores">
++                    <p><input-stars max="5" ng-model="(indicador.nota)" readonly="false"></input-stars> {{indicador.pergunta}}</p><br>
++                </div>
++            </div>
++        </md-content>
++        <md-footer layout="row" layout-align="center">
++            <div layout="row " layout-align="center center ">
++                <md-button ng-disabled="perfilForm.$invalid" class="md-raised md-primary btnPrincipais" ng-click="salvarEval()">
++                    <md-icon class="material-icons">&#xE161;</md-icon> Enviar</md-button>
++            </div>
++        </md-footer>
++    </form>
++</md-dialog>
+\ No newline at end of file

@@ -1,0 +1,47 @@
+<div class="demo-md-panel layout-fill" layout="column" class="ng-cloak">
+    <div class="container-fluid" style="background: #fff;">
+        <div class="row" style="overflow: hidden">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 headerRanking">
+                <h1 style="font-weight: bolder;">Ranking: {{ranking.op.nome}}</h1>
+            </div>
+        </div>
+        <div class="row " style="overflow: hidden;">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="rankMinhaPosicao" flex="100">
+                    <div class="esquerda">
+                        <p class="texth1">{{ranking.meurank.pontuacao}}</p>
+                        <p class="texth2">{{ranking.op.moeda}}</p>
+                        <p class="text">Pontos acumulados<br/>nesta oportunidade.</p>
+                    </div>
+                    <div class="direita">
+                        <p class="texth2" style="margin-top: 15px;" ng-if="ranking.meurank.posicao == 'Não classificado'">{{ranking.meurank.posicao}}</p>
+                        <p class="texth1" >{{ranking.meurank.posicao}}º</p>
+                        <p class="texth2" >LUGAR</p>
+                        <p class="text">Colocação geral</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="overflow: hidden;">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 layout-fill">
+                <h1 class="rankTituloTop">- TOP 10 -</h1>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="rankBorder row">
+                    <div style="line-height: 50px;" >
+                        <div ng-repeat="rankeado in ranking.rankeados">
+                            <div class="esquerda" style="border:none; text-align: left; margin-left: 30px; font-size: 18px;">
+                                <p>{{rankeado.nome}}</p>
+                            </div>
+                            <div class="direita">
+                                <p class="texth2">{{rankeado.posicao}}º | {{rankeado.pontuacao}}</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

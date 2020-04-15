@@ -1,0 +1,33 @@
+<div class="demo-md-panel" layout="column">
+    <md-content class="container">
+        <form name="emailForm" data-ng-init="carregarInfos()" >
+            <br><br><br>
+            <div >
+                <h2 style="font-weight: bolder; color: #0f1b6b">Formulário de contato</h2>
+                <p>Como podemos ajudar ?</p>
+                <p class="linhaAzul"></p>
+            </div>
+            <br><br>
+            <md-content class="md-padding conteudo" style="max-width: 1180px; margin: 0 auto; margin-top: 30px; border-radius: 17px;" >
+            	<md-input-container class="md-block" flex-gt-sm>
+                   <p>E-mail</p>
+                   <input ng-model="email.remetente" readonly>
+               </md-input-container>
+               <md-input-container class="md-block" flex-gt-sm>
+                <p>Mensagem</p>
+                <textarea required ng-model="email.mensagem" class="materialize-textarea" rows="5"  maxlength="1500 "></textarea>
+            </md-input-container>
+            <md-input-container class="md-block" style="margin-top: 30px;">
+                <p>É sobre uma oportunidade?</p>
+                <md-select name="oportunidade" ng-model="email.oportunidade" aria-p="Mensagem sobre alguma oportunidade?">
+                    <md-option ng-repeat="op in listaOportunidades" value="{{op.nome}}">
+                        {{op.nome}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+            <md-button class="md-raised md-primary" ng-disabled="emailForm.$invalid" ng-click="enviarEmail(email)" style="width: 145px; height: 50px; margin: 0 auto;">
+                <p style="color: #fff;">Enviar</p>
+            </md-button>
+        </form>
+    </md-content>
+</div>

@@ -1,0 +1,492 @@
+<div class="demo-md-panel" layout-fill layout="column" ng-cloak>
+    <div style="width: 80%; margin: 0 auto;">
+        <h2 class="tituloOp">{{trilha.oportunidade}}</h2>
+        <!--<p>Para que pueda avanzar en el proceso de reclutamiento de PepsiCo Mexico, por favor, complete todos los retos de esta
+        oportunidad. </p>-->
+        <div class="linhaAzul"></div>
+        <br><br><br>
+        <!--Inicio do Acordeon-->
+        <div class="cardAcordeon">
+            <div class="tab">
+                <input id="tab-one" type="checkbox" name="tabs" style="display: none;">
+                <label id="acordeon" style="font-size: 18px; color: #0f1b6b;" for="tab-one">
+                    <img class="icons" src="../img/icon-check.png" title="ESSE JÁ FOI!"> 
+                    01. QUIZ GAME PROFILE &nbsp;&nbsp;&nbsp;
+                    <div layout-align="end center" layout="row" style="margin-top: -50px;">
+                        <md-chip class="chipTrilha buttonRefazer"  
+                                   > ESSE JÁ FOI!
+                        </md-chip>
+                    </div>
+                </label>
+                <div class="tab-content" style="height: 400px;">
+                    <div class="row" ng-controller="novodashCtrl" ng-init="carregarPerfil()">
+                        <div class="caixaPainel col-xs-3" style="margin: 20px;" ng-click="cadastrarInfopessoal()">
+                            <img class="iconesPainel" src="../img/icon-dados.png">
+                            <p class="infoCaixaPainel" style="">Presentación</p>
+                            <div ng-class="{true:'preenchidoTrue', false:'preenchidoFalse'}[statusPreenchido.apresentacao]">
+                            </div>
+                        </div>
+                        <!--<div class="caixaPainel col-xs-3" style="margin: 20px;" ng-click="cadastrarHabilidade()">
+                            <img class="iconesPainel" style="" src="../img/icon-habilidades.png">
+                            <p class="infoCaixaPainel">Habilidades</p>
+                            <div ng-class="{true:'preenchidoTrue', false:'preenchidoFalse'}[statusPreenchido.habilidade]">
+                            </div>
+                        </div>-->
+                        <div class="caixaPainel col-xs-3" style="margin: 20px;" ng-click="cadastrarExperiencia()">
+                            <img class="iconesPainel" src="../img/icon-experiencias.png">
+                            <p class="infoCaixaPainel" style="">Experiencias</p>
+                            <div ng-class="{true:'preenchidoTrue', false:'preenchidoFalse'}[statusPreenchido.qualificacao]">
+                            </div>
+                        </div>
+                        <div class="caixaPainel col-xs-3" style="margin: 20px;" ng-click="cadastrarExperiencia()">
+                            <img class="iconesPainel" style="" src="../img/icon-cursos.png">
+                            <p class="infoCaixaPainel">Carrera</p>
+                            <div ng-class="{true:'preenchidoTrue', false:'preenchidoFalse'}[statusPreenchido.qualificacao]">
+                            </div>
+                        </div>
+                        <div class="caixaPainel col-xs-3" style="margin: 20px;" ng-click="cadastrarIdioma(idioma)">
+                            <img class="iconesPainel" src="../img/icon-idiomas.png">
+                            <p class="infoCaixaPainel">Idiomas</p>
+                            <div ng-class="{true:'preenchidoTrue', false:'preenchidoFalse'}[statusPreenchido.idioma]">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- via banco -->
+        <div class="cardAcordeon" ng-init="carregarDetalhesTrilha()">
+            <div class="tab" ng-repeat="step in trilha.steps| orderBy:'idDesafio'" ng-disabled="$index > trilha.step_atual">
+                <input id="{{ step.idDesafio}}" type="checkbox" name="tabs" style="display: none;">
+                <label id="acordeon" style="font-size: 18px; color: #0f1b6b;" for="{{ step.idDesafio}}" layout="column">
+                    <img class="icons" ng-if="$index == trilha.step_atual" src="../img/icon-warning.png" title="COMEÇAR!">
+                    <img class="icons" ng-if="$index > trilha.step_atual" src="../img/icon-lock.png"  title="TERMINE O STEP ANTERIOR">
+                    <img class="icons" ng-if="step.feito" src="../img/icon-check.png"  title="ESSE JÁ FOI!">
+                    0{{$index + 2}}. {{step.nome}}
+                    
+                    <div layout-align="end center" layout="row" style="margin-top: -50px;">
+                        <md-chip class="chipTrilha buttonComplete" ng-disabled="true" 
+                                   ng-if="$index > trilha.step_atual"> TERMINE O STEP ANTERIOR
+                        </md-chip>
+                        <md-chip class="chipTrilha buttonComecar"  
+                                   ng-if="$index == trilha.step_atual"> COMEÇAR!
+                        </md-chip>
+                        <md-chip class="chipTrilha buttonRefazer"  
+                                   ng-if="step.feito"> ESSE JÁ FOI!
+                        </md-chip>
+                    </div>
+                </label>
+                <div class="tab-content">
+                    <p ng-show="step.tipo != 3" ng-bind-html="step.descricao"></p>
+                    <md-button ng-show="step.regulamento" class="buttonComplete" style="width: fit-content; color: rgba(0,0,0,0.54)" href="{{step.regulamento}}"
+                        target="_blank">
+                        <md-icon class="material-icons">&#xE2C4;</md-icon> Acessar regulamento </md-button>
+                    <div class="row">
+                        <div ng-show="step.tipo == 0" class="md-padding" layout="column" layout-align="center start">
+                            <div ng-show="!step.feito">
+                                <p>Para este desafio você deve informar o link de acesso</p>
+                                <div class="col-lg-10 col-md-10 col-xs-12 col-sm-12">
+                                    <md-input-container class="md-block">
+                                        <input required name="link" ng-model="step.arquivo" placeholder="Cole o link do desafio">
+                                    </md-input-container>
+                                    <md-button type="button" class="buttonComecar" ng-click="enviarLinkDesafio(step)" ng-disabled="$index != trilha.step_atual">
+                                        Enviar
+                                    </md-button>
+                                </div>
+                            </div>
+                            <div ng-show="step.feito">
+                                Seu desafio foi envido. Agora é só aguardar. Boa sorte!
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div style="margin-bottom: 20px;" ng-show="step.tipo == 1" class="md-padding" layout="column" layout-align="center start">
+                            <div ng-show="!step.feito" ng-controller="uploadDesafio">
+                                <p>Para este desafio você deve me enviar o arquivo</p>
+                                <input type="file" nv-file-select="" autoupload="true" uploader="uploader" id="{{step.idDesafio}}" ng-model="blabla" onchange="angular.element(this).scope().passarParametrosEnviar(this.id)"
+                                />
+                                <table style="width: 100%;">
+                                    <tbody>
+                                        <tr ng-repeat="item in uploader.queue">
+                                            <td ng-show="uploader.isHTML5">
+                                                <div class="progress" style="margin-bottom: 0; ">
+                                                    <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" ng-style="{'width': item.progress + '%'}"></div>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                                <span ng-show="item.isSuccess"><md-icon class="material-icons">&#xE5CA;</md-icon> Envio realizado.</span>
+                                                <span ng-show="item.isCancel"><md-icon class="material-icons">&#xE5C9;</md-icon></span>
+                                                <span ng-show="item.isError"><md-icon class="material-icons">&#xE001;</md-icon> Erro no envio.</span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <md-button type="button" class="md-primary md-raised" ng-click="uploader.uploadAll()" ng-disabled="!uploader.getNotUploadedItems().length || $index != trilha.step_atual">
+                                    Enviar
+                                </md-button>
+                            </div>
+                            <div ng-show="step.feito">
+                                Seu desafio foi envido. Agora é só aguardar. Boa sorte!
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div ng-show="step.tipo == 2" class="md-padding" layout="column" layout-align="center start">
+                            <div ng-show="!step.feito">
+                                <div class="col-lg-10 col-md-10 col-xs-12 col-sm-12">
+                                    <md-button type="button" class="buttonComecar" ng-controller="evalCtrl" ng-disabled="$index != trilha.step_atual" ng-click="abreDialogEval($event, step)">
+                                        Iniciar
+                                    </md-button>
+                                </div>
+                            </div>
+                            <div ng-show="step.feito">
+                                Já recebemos sua avaliação. Aguarde o envio do seu relatório por email.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div ng-show="step.tipo == 3" class="md-padding" layout="column" layout-align="center start" ng-cloak>
+                            <div ng-show="!step.feito"  style="min-width: 100%;"> 
+                                <div class="col-lg-10 col-md-10 col-xs-12 col-sm-12">
+                                    <iframe id="typeFormFrame"  ng-src="{{step.linkType}}"></iframe>
+                                </div>
+                            </div>
+                            <div ng-show="step.feito">
+                                Já recebemos seu questionário. Obrigado.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- fim via banco -->
+    </div>
+    <!--Fim do Acordeon-->
+
+</div>
+
+<!--SIDENAV INFORMAÇÕES PESSOAIS-->
+<md-sidenav class="md-sidenav-right md-whiteframe-4dp sidePerfilEdit" style="width: 90%;" md-component-id="sideInfopessoal">
+    <md-toolbar class="md-theme-light">
+        <h1 class="md-toolbar-tools">Informações pessoais</h1>
+    </md-toolbar>
+    <md-content style="text-align: left" class="md-padding conteudo">
+        <form name="perfilInfosPessoais">
+            <div layout-gt-sm="row">
+                <md-input-container class="md-block" flex-gt-sm>
+                    <input required name="nome" ng-model="pessoa.nome" placeholder="Nome completo">
+                    <div ng-messages="perfilForm.nome.$error" role="alert">
+                        <div ng-message-exp="['required']">
+                            Nome é dado obrigatório!
+                        </div>
+                    </div>
+                </md-input-container>
+            </div>
+            <div layout-gt-sm="row">
+                <md-input-container class="md-block" flex-gt-sm>
+                    <input required name="email" ng-model="pessoa.email" placeholder="E-mail">
+                </md-input-container>
+                <md-input-container class="md-block" flex-gt-sm data-ng-mask="(##) #####-####">
+                    <input required name="celular" ng-model="pessoa.celular" placeholder="(99) 99999-9999" ng-pattern="/^[(][0-9]{2}[)] [0-9]{5}-[0-9]{4}$/"
+                        data-ng-mask="(##) #####-####" ui-mask="(99) 99999-9999" ui-mask-placeholder ui-options={addDefaultPlaceholder:false}>
+                </md-input-container>
+            </div>
+            <div layout-gt-sm="row">
+                <md-input-container class="md-block" flex-gt-sm>
+                    <label>Apresentação</label>
+                    <textarea required name="apresentacao" md-maxlength="500" rows="5" ng-model="pessoa.apresentacao" placeholder="Aqui quero conhecer mais sobre você, se resuma em até 500 caracteres"
+                        md-select-on-focus></textarea>
+                    <div ng-messages="perfilForm.apresentacao.$error" role="alert">
+                        <div ng-message-exp="['required']">
+                            Apresentação é dado obrigatório!
+                        </div>
+                    </div>
+                </md-input-container>
+            </div>
+            <div layout-gt-sm="row">
+                <md-input-container class="md-block" flex-gt-sm>
+                    <input mdc-datetime-picker="" type="text" id="dataNascimento" placeholder="Data de nascimento" min-date="minDate" ng-model="pessoa.aniversario"
+                        readonly="readonly" time="false" today-text="Hoje" cancel-text="Cancelar" format="DD/MM/YYYY" required>
+                </md-input-container>
+                <md-input-container class="md-block" flex-gt-sm>
+                    <label>Gênero</label>
+                    <md-select required name="genero" ng-model="pessoa.genero" aria-label="Selecione o gênero">
+                        <md-option ng-repeat="item in generos" value="{{item.valor}}">
+                            {{item.descricao}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+            <div layout-gt-sm="row">
+                <md-input-container class="md-block" flex-gt-sm>
+                    <input name="codigoPostal " ng-model="pessoa.endereco.cep" ui-br-cep-mask ng-change="buscarCodigoPostal(pessoa.endereco.cep)"
+                        placeholder="Código Postal" ng-controller="novodashCtrl" required>
+                    <div ng-messages="vagaForm.codigoPostal.$error " role="alert ">
+                        <div ng-message="required " class="my-message ">Código Postal é um dado obrigatório</div>
+                        <div ng-message="pattern " class="my-message ">O Código Postal não é Válido</div>
+                        <div ng-message="md-maxlength " class="my-message ">O tamanho máximo do Código Postal é de 8 digitos</div>
+                    </div>
+                </md-input-container>
+                <md-input-container class="md-block" flex-gt-sm>
+                    <input name="cidade" ng-model="pessoa.endereco.localidade" placeholder="Município" required disabled>
+                </md-input-container>
+                <md-input-container class="md-block" flex-gt-sm>
+                    <input name="estado" ng-model="pessoa.endereco.uf" placeholder="Estado" required disabled>
+                </md-input-container>
+            </div>
+            <div layout-gt-sm="row">
+                <md-input-container class="md-block" flex-gt-sm>
+                    <input name="logradouro" ng-model="pessoa.endereco.logradouro" placeholder="Logradouro" required>
+                </md-input-container>
+                <md-input-container class="md-block" flex-gt-sm>
+                    <input name="numero" ng-model="pessoa.endereco.numero" placeholder="Numero" required>
+                </md-input-container>
+                <md-input-container class="md-block" flex-gt-sm>
+                    <input name="bairro" ng-model="pessoa.endereco.bairro" placeholder="Bairro" required>
+                </md-input-container>
+            </div>
+        </form>
+    </md-content>
+    <md-footer layout="row" layout-align="center">
+        <div layout="row " layout-align="center center ">
+            <md-button ng-disabled="perfilInfosPessoais.$invalid" class="md-raised md-primary btnPrincipais" ng-click="salvarInfosPessoais()"
+                ng-controller="novodashCtrl">
+                <md-icon class="material-icons">&#xE161;</md-icon> Salvar</md-button>
+        </div>
+    </md-footer>
+</md-sidenav>
+
+<!--SIDENAV APRECIAÇÃO-->
+<md-sidenav class="md-sidenav-right md-whiteframe-4dp sidePerfilEdit" style="width: 90%; height: auto;" md-component-id="sideApreciacao">
+    <md-toolbar class="md-theme-light">
+        <h1 class="md-toolbar-tools">Adicionar apreciação</h1>
+    </md-toolbar>
+    <md-content layout-padding layout="column">
+        <p style="text-align: justify">Uma das formas mais legais e surpreendentes de você se conhecer melhor é perguntando a opinião de pessoas com quem
+            atuou em algum trabalho ou projeto. Nunca fez isso? Então chegou a hora! Escolha pelo menos 1 pessoa (não vale
+            pai, mãe, irmãos...) e peça para te contar uma característica positiva que enxerga em você e a justificativa
+            em até 100 palavras. Você vai poder colecionar essas apreciações positivas aqui no seu perfil da plataforma ;)
+        </p>
+        <md-input-container class="md-block" flex-gt-sm>
+            <label>CaracterÃ­stica</label>
+            <input name="caracteristica" ng-model="pessoa.apreciacao.caracteristica">
+        </md-input-container>
+        <md-input-container class="md-block" flex-gt-sm>
+            <label>Justificativa</label>
+            <textarea md-maxlength="3000" rows="5" name="justificativa" ng-model="pessoa.apreciacao.justificativa" placeholder="Justificativa"></textarea>
+            <div ng-messages="caracteristicaForm.justificativa.$error" role="alert">
+                <div ng-message-exp="['required']">
+                    Justificativa é dado obrigatório!
+                </div>
+            </div>
+        </md-input-container>
+        <md-input-container class="md-block" flex-gt-sm>
+            <label>Autor</label>
+            <input name="autor" ng-model="pessoa.apreciacao.autor" placeholder="Autor">
+            <div ng-messages="caracteristicaForm.autor.$error" role="alert">
+                <div ng-message-exp="['required']">
+                    Autor é dado obrigatório!
+                </div>
+            </div>
+        </md-input-container>
+    </md-content>
+    <md-footer layout="row" layout-align="center">
+        <div layout="row " layout-align="center center ">
+            <md-button ng-disabled="perfilForm.$invalid" class="md-raised md-primary btnPrincipais" ng-click="salvarApreciacoes()" ng-controller="novodashCtrl">
+                <md-icon class="material-icons">&#xE161;</md-icon> Salvar</md-button>
+        </div>
+    </md-footer>
+</md-sidenav>
+
+<!--SIDENAV IDIOMAS-->
+<md-sidenav class="md-sidenav-right md-whiteframe-4dp sidePerfilEdit" style="width: 90%; height: auto" md-component-id="sideIdiomas">
+    <md-toolbar class="md-theme-light">
+        <h1 class="md-toolbar-tools">Adicionar idioma</h1>
+    </md-toolbar>
+    <md-content style="text-align: left" class="md-padding conteudo">
+        <h4>Idiomas informados</h4>
+        <div layout-gt-sm="row">
+            <md-list class="ng-cloak">
+                <md-list-item ng-repeat="idioma in pessoa.idiomas">
+                    <md-menu>
+                        <md-button aria-label="Opcoes" class="md-icon-button" ng-click="openMenu($mdMenu, $event)">
+                            <md-icon md-menu-origin class="material-icons">&#xE5D2;</md-icon>
+                        </md-button>
+                        <md-menu-content width="4">
+                            <md-menu-item>
+                                <md-button ng-click="editarIdioma(idioma)">
+                                    <md-icon class="material-icons">&#xE8FF; </md-icon>
+                                    Detalhes
+                                </md-button>
+                            </md-menu-item>
+                            <md-divider></md-divider>
+                            <md-menu-item style="color: red;">
+                                <md-button ng-click="removeItemList(idioma, pessoa.idiomas)">
+                                    <md-icon class="material-icons md-accent">&#xE92B; </md-icon>
+                                    Remover
+                                </md-button>
+                            </md-menu-item>
+                        </md-menu-content>
+                    </md-menu>
+                    {{idioma.nome}} -
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <md-select name="nivel" ng-model="idioma.nivel" aria-label="Selecione o nível">
+                            <md-option ng-repeat="item in niveis" value="{{item.valor}}">
+                                {{item.descricao}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                </md-list-item>
+            </md-list>
+        </div>
+        <h4>Novo idioma</h4>
+        <div layout-gt-sm="row">
+            <md-input-container class="md-block" flex-gt-sm>
+                <label>Idioma</label>
+                <md-select name="idioma" ng-model="pessoa.idioma.nome" aria-label="Selecione o idioma">
+                    <md-option ng-repeat="idioma in idiomasDisponiveis" value="{{idioma.nome}}">
+                        {{idioma.nome}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-sm>
+                <label>Nível</label>
+                <md-select name="nivel" ng-model="pessoa.idioma.nivel" aria-label="Selecione o nível">
+                    <md-option ng-repeat="item in niveis" value="{{item.valor}}">
+                        {{item.descricao}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+            <md-button class="md-fab" ng-click="alterarIdioma()" ng-controller="novodashCtrl">
+                add
+            </md-button>
+        </div>
+    </md-content>
+    <md-footer layout="row" layout-align="center">
+        <div layout="row " layout-align="center center ">
+            <md-button ng-disabled="perfilForm.$invalid" class="md-raised md-primary btnPrincipais" ng-click="salvarIdiomas()" ng-controller="novodashCtrl">
+                <md-icon class="material-icons">&#xE161;</md-icon> Salvar</md-button>
+        </div>
+    </md-footer>
+</md-sidenav>
+
+
+<!--SIDENAV HABILIDADES-->
+<md-sidenav class="md-sidenav-right md-whiteframe-4dp sidePerfilEdit" style="width: 90%; height: auto;" md-component-id="sideHabilidade">
+    <md-toolbar class="md-theme-light">
+        <h1 class="md-toolbar-tools">Adicionar habilidades</h1>
+    </md-toolbar>
+    <md-content style="text-align: left" class="md-padding conteudo">
+        <p style="color:rgb(2,119,189)">Olá, conte para mim as suas habilidades desenvolvidas. Escreva uma por uma e aperte enter. Depois é só salvar</p>
+        <div layout-gt-sm="row">
+            <md-chips style="min-width: 100%" ng-model="pessoa.habilidades" name="nome" placeholder="Nova habilidade" md-transform-chip="novaHabilidade($chip)">
+                <md-chip-template>
+                    {{$chip.nome}}
+                </md-chip-template>
+            </md-chips>
+        </div>
+    </md-content>
+    <md-footer layout="row" layout-align="center">
+        <div layout="row " layout-align="center center ">
+            <md-button ng-disabled="perfilForm.$invalid" class="md-raised md-primary btnPrincipais" ng-click="salvarHabilidades()" ng-controller="novodashCtrl">
+                <md-icon class="material-icons">&#xE161;</md-icon> Salvar</md-button>
+        </div>
+    </md-footer>
+</md-sidenav>
+
+<!--SIDENAV EXPERIÊNCIAS-->
+<md-sidenav class="md-sidenav-right md-whiteframe-4dp sidePerfilEdit" style="width: 90%; height: auto;" md-component-id="sideExperiencia">
+    <md-toolbar class="md-theme-light">
+        <h1 class="md-toolbar-tools">Adicionar experiência</h1>
+    </md-toolbar>
+    <md-content>
+        <form name="qualificacaoForm">
+            <div layout-align="center center">
+                <md-content class="md-padding conteudo">
+                    <div layout-gt-sm="row">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Tipo</label>
+                            <md-select name="tipo" ng-model="pessoa.qualificacao.tipo">
+                                <md-option ng-repeat="item in tipoQualificacao" value="{{item.valor}}">
+                                    {{item.descricao}}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+                    </div>
+                    <div ng-switch="pessoa.qualificacao.tipo">
+                        <div ng-controller="autoCompleteCurso as ctrl" ng-switch-when="0">
+                            <md-autocomplete required name="curso" ng-model="pessoa.qualificacao.curso" md-input-name="curso" md-no-cache="ctrl.noCache"
+                                md-selected-item="pessoa.qualificacao.curso" md-search-text="ctrl.searchText" md-items="item in ctrl.querySearch(ctrl.searchText)"
+                                md-item-text="item.display" md-require-match md-floating-label="Curso">
+                                <md-item-template>
+                                    <span md-highlight-text="ctrl.searchText">{{item.display}}</span>
+                                </md-item-template>
+                                <div ng-messages="qualificacaoForm.curso.$error" ng-if="qualificacaoForm.curso.$touched">
+                                    <div ng-message="md-require-match">
+                                        O curso precisa ser informado!
+                                    </div>
+                                </div>
+                            </md-autocomplete>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <input required name="universidade " ng-model="pessoa.qualificacao.local" placeholder="Universidade">
+                            </md-input-container>
+                        </div>
+                        <div ng-switch-when="1">
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <input required name="titulo " ng-model="pessoa.qualificacao.titulo" placeholder="Cargo/Função">
+                            </md-input-container>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <input required name="local " ng-model="pessoa.qualificacao.local" placeholder="Organização/Empresa">
+                            </md-input-container>
+                        </div>
+                        <div ng-switch-when="2">
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <input required name="titulo " ng-model="pessoa.qualificacao.titulo" placeholder="Curso">
+                            </md-input-container>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <input required name="local " ng-model="pessoa.qualificacao.local" placeholder="Onde?">
+                            </md-input-container>
+                        </div>
+                        <div ng-switch-when="3">
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <input required name="titulo " ng-model="pessoa.qualificacao.titulo" placeholder="Qual foi a experiência?">
+                            </md-input-container>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <input required name="local " ng-model="pessoa.qualificacao.local" placeholder="Onde foi?">
+                            </md-input-container>
+                        </div>
+                    </div>
+                    <div layout-gt-sm="row" ng-show="pessoa.qualificacao.tipo != null">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <input required mdc-datetime-picker="" type="text" id="inicio" placeholder="Início" min-date="minDate" ng-model="pessoa.qualificacao.inicio"
+                                readonly="readonly" time="false" today-text="Hoje" cancel-text="Cancelar" format="MM/YYYY">
+                        </md-input-container>
+                        <md-input-container class="md-block" flex-gt-sm ng-show="pessoa.qualificacao.tipo == 1">
+                            <md-checkbox ng-model="pessoa.qualificacao.atual" aria-label="Atual ?">
+                                Atual ?
+                            </md-checkbox>
+                        </md-input-container>
+                        <md-input-container class="md-block" flex-gt-sm ng-if="!pessoa.qualificacao.atual">
+                            <input required mdc-datetime-picker="" type="text" id="termino" placeholder="Término" min-date="minDate" ng-model="pessoa.qualificacao.fim"
+                                readonly="readonly" time="false" today-text="Hoje" cancel-text="Cancelar" format="MM/YYYY">
+                        </md-input-container>
+                    </div>
+                    <div layout-gt-sm="row" ng-show="pessoa.qualificacao.tipo != null">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <textarea required name="descricao" md-maxlength="1500" rows="5" ng-model="pessoa.qualificacao.descricao" placeholder="Aqui quero saber mais sobre sua experiência, aprendizados e como está sendo ou foi para você."></textarea>
+                            <div ng-messages="qualificacaoForm.descricao.$error" role="alert">
+                                <div ng-message-exp="['required']">
+                                    Descrição de dado obrigatório!
+                                </div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                </md-content>
+                <div layout="row " layout-align="center center ">
+                    <md-button ng-disabled="qualificacaoForm.$invalid" ng-click="salvarQualificacao()" class="md-raised md-primary btnPrincipais"
+                        type="submit" ng-controller="novodashCtrl">
+                        <md-icon class="material-icons">&#xE161;</md-icon> Salvar</md-button>
+                </div>
+        </form>
+    </md-content>
+</md-sidenav>

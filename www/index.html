@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html ng-app="eurecaJovem">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height"
+    />
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <!-- Material Angular JS -->
+    <link rel="stylesheet" type="text/css" href="node_modules/angular-material/angular-material.css">
+    <!-- DatePicker -->
+    <link rel="stylesheet" type="text/css" href="css/material-datetimepicker.css" />
+    <!-- Material Icons -->
+    <link rel="stylesheet" type="text/css" href="icons/material-icons.css">
+    <!-- CSS Criados/Personalizados -->
+    <link rel="stylesheet" type="text/css" href="css/navigation.css">
+    <link rel="stylesheet" type="text/css" href="css/toolbar.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/new-style.css">
+    <link rel="stylesheet" type="text/css" href="css/accordion.css">
+    <link rel="stylesheet" type="text/css" href="css/perfil.css">
+    <link rel="stylesheet" type="text/css" href="css/carousel.css">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/css/bootstrap.css" />
+    <!-- importação dos estilos pra timeline -->
+    <link rel="stylesheet" type="text/css" href="node_modules/angular-timeline/dist/angular-timeline.css" />
+    <!-- importação dos estilos da plataforma antiga -->
+    <link rel="stylesheet" type="text/css" href="css/plataformaAntiga.css" />
+    <!-- Slick -->
+    <link rel="stylesheet" type="text/css" href="node_modules/slick-carousel/slick/slick.css" />
+    <link rel="stylesheet" type="text/css" href="node_modules/slick-carousel/slick/slick-theme.css" />
+    <!-- Angular Input Stars-->
+    <link rel="stylesheet" type="text/css" href="node_modules/angular-input-stars/angular-input-stars.css" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+        crossorigin="anonymous">
+    <!-- Fonte Roboto -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <title>Eureca - Energia Jovem!</title>
+</head>
+
+<body style="background: #fff;">
+    <div ng-controller="eurecaJovemCtrl" id="layout-vertical-navigation" class="template-layout" layout="row" flex layout-fill
+        ng-show="usuarioLogado">
+        <md-sidenav class="md-sidenav-left navigation-content vertical-navigation" md-component-id="menuSideBar" md-is-locked-open="$mdMedia('gt-sm')"
+            md-whiteframe="4" md-component-id="menuSideBar">
+            <div layout-fill ng-include="'view/menu.html'"></div>
+        </md-sidenav>
+        <div id="content-container" flex layout="column" style="overflow-y: auto;">
+            <md-toolbar id="toolbar" class="md-menu-toolbar md-whiteframe-1dp">
+                <div ng-include="'view/toolbar.html'"></div>
+            </md-toolbar>
+            <div ng-hide="loading" style="position: relative">
+                <md-content id="content" class="animate-slide-up container-fluid" ng-view>
+                </md-content>
+            </div>
+            <div ng-show="loading" layout="row" layout-fill layout-sm="column" layout-align="center center">
+                <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+            </div>
+        </div>
+    </div>
+    <div ng-controller="eurecaJovemCtrl" ng-hide="usuarioLogado" layout-fill ng-switch="loginOuCadastro">
+        <div ng-switch-when="login" layout-fill>
+            <div layout-fill ng-include="'view/login.html'"></div>
+        </div>
+        <div ng-switch-when="cadastro" layout-fill>
+            <div layout-fill ng-include="'view/cadastro.html'"></div>
+        </div>
+    </div>
+    <!-- Comentei para parar o erro no console -->
+    <!--<script type="text/javascript" src="cordova.js"></script>-->
+    <script type="text/javascript" src="js/index.js"></script>
+
+    <!-- Angular JS Material Library -->
+    <script type="text/javascript" src="node_modules/angular/angular.js"></script>
+    <script type="text/javascript" src="node_modules/angular-aria/angular-aria.js"></script>
+    <script type="text/javascript" src="node_modules/angular-animate/angular-animate.js"></script>
+    <script type="text/javascript" src="node_modules/angular-material/angular-material.js"></script>
+    <!-- ui-mask -->
+    <script type="text/javascript" src="node_modules/angular-ui-mask/dist/mask.js"></script>
+    <!-- Slick -->
+    <script type="text/javascript" src="node_modules/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="node_modules/slick-carousel/slick/slick.min.js"></script>
+    <script type="text/javascript" src="node_modules/angular-slick/dist/slick.min.js"></script>
+    <!-- ngRoute -->
+    <script type="text/javascript" src="node_modules/angular-route/angular-route.min.js"></script>
+    <!-- ngStorage -->
+    <script type="text/javascript" src="node_modules/ngstorage/ngStorage.min.js"></script>
+    <!-- ngMessages -->
+    <script type="text/javascript" src="node_modules/angular-messages/angular-messages.js"></script>
+    <!-- ngMaterialDataPicker -->
+    <script type="text/javascript" src="node_modules/ng-material-datetimepicker/js/angular-material-datetimepicker.js"></script>
+    <!-- importando moment.js para usar pt-BR no date time picker -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment-with-locales.min.js"></script>
+    <!-- file upload -->
+    <script src="node_modules/angular-file-upload/dist/angular-file-upload.min.js"></script>
+    <!-- timeline -->
+    <script src="node_modules/angular-timeline/dist/angular-timeline.js"></script>
+    <!-- Include YT library and this directive -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="node_modules/angular-youtube-embed/dist/angular-youtube-embed.min.js"></script>
+    <!-- Angular Input Stars-->
+    <script type="text/javascript" src="node_modules/angular-input-stars/angular-input-stars.js"></script>
+    <!-- Angular UI-Route -->
+    <script src="//unpkg.com/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <!-- ngSanitize -->
+    <script type="text/javascript" src="node_modules/angular-sanitize/angular-sanitize.js"></script>
+    <!-- knob -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.10/d3.min.js"></script>
+    <script type="text/javascript" src="node_modules/ng-knob/dist/ng-knob.min.js"></script>
+    <!-- Truncate -->
+    <script type="text/javascript" src="node_modules/angular-truncate/truncate.js"></script>
+    <!-- Bootstrap -->
+    <script type="text/javascript" src="node_modules/bootstrap/js/bootstrap.min.js"></script>
+    <!-- TypeForm -->
+    <script type="text/javascript" src="node_modules/angular-typeform/angular-typeform.min.js"></script>
+    <!-- imports dos controles do app -->
+    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/configValue.js"></script>
+    <script type="text/javascript" src="js/config/interceptorConfig.js"></script>
+    <script type="text/javascript" src="js/config/dataproviderConfig.js"></script>
+    <script type="text/javascript" src="js/config/rotaConfiguracao.js"></script>
+    <script type="text/javascript" src="js/config/typeFormConfig.js"></script>
+    <script type="text/javascript" src="js/config/delegateSCE.js"></script>
+    <script type="text/javascript" src="js/services/eurecaJovemAPIService.js"></script>
+    <script type="text/javascript" src="js/services/eurecaJovemStorageAPI.js"></script>
+    <script type="text/javascript" src="js/services/eurecaECBrasilService.js"></script>
+    <!--<script type="text/javascript" src="js/services/googleAnalyticsService.js"></script>-->
+    <script type="text/javascript" src="js/interceptors/loadInterceptor.js"></script>
+    <script type="text/javascript" src="js/interceptors/timestampinterceptor.js"></script>
+    <script type="text/javascript" src="js/interceptors/authInterceptor.js"></script>
+    <script type="text/javascript" src="js/autocompletes/autoCompleteCliente.js"></script>
+    <script type="text/javascript" src="js/autocompletes/autoCompleteCidade.js"></script>
+    <script type="text/javascript" src="js/autocompletes/autoCompleteIdioma.js"></script>
+    <script type="text/javascript" src="js/autocompletes/autoCompleteCurso.js"></script>
+    <script type="text/javascript" src="js/controllers/eurecaJovemCtrl.js"></script>
+    <script type="text/javascript" src="js/controllers/perfilCtrl.js"></script>
+    <script type="text/javascript" src="js/controllers/contatoCtrl.js"></script>
+    <script type="text/javascript" src="js/controllers/cadastroCtrl.js"></script>
+    <script type="text/javascript" src="js/controllers/uploadImagemJovem.js"></script>
+    <script type="text/javascript" src="js/controllers/dialogCtrl.js"></script>
+    <script type="text/javascript" src="js/controllers/participacaoCtrl.js"></script>
+    <script type="text/javascript" src="js/controllers/rankingCtrl.js"></script>
+    <!-- eval -->
+    <script type="text/javascript" src="eval/evalCtrl.js"></script>
+    <script type="text/javascript" src="eval/evalService.js"></script>
+    <!-- vou trabalhar pastas separadas pq vou movendo conforme for refazendo -->
+    <!-- Oportunidades abertas -->
+    <script type="text/javascript" src="pages/oportunidades/oportunidadesCtrl.js"></script>
+    <!-- Detalhes da oportuniadde -->
+    <script type="text/javascript" src="pages/oportunidade/oportunidadeCtrl.js"></script>
+    <!-- Dashboard do usuário -->
+    <script type="text/javascript" src="pages/dashboard/dashboardCtrl.js"></script>
+    <link rel="stylesheet" type="text/css" href="pages/dashboard/style-dash.css">
+    <script type="text/javascript" src="pages/dashboard/novodashCtrl.js"></script>
+    <!-- Trilha da oportunidade -->
+    <script type="text/javascript" src="pages/trilha/trilhaCtrl.js"></script>
+    <link rel="stylesheet" type="text/css" href="pages/trilha/trilha.css">
+    <script type="text/javascript" src="pages/trilha/uploadDesafio.js"></script>
+
+    <!-- removendo pq esta demorando e estamos apenas testando ambiente pepsico
+    <script>
+        window['_fs_debug'] = false;
+        window['_fs_host'] = 'fullstory.com';
+        window['_fs_org'] = '7FZ2N';
+        window['_fs_namespace'] = 'FS';
+        (function (m, n, e, t, l, o, g, y) {
+            if (e in m) { if (m.console && m.console.log) { m.console.log('FullStory namespace conflict. Please set window["_fs_namespace"].'); } return; }
+            g = m[e] = function (a, b) { g.q ? g.q.push([a, b]) : g._api(a, b); }; g.q = [];
+            o = n.createElement(t); o.async = 1; o.src = 'https://' + _fs_host + '/s/fs.js';
+            y = n.getElementsByTagName(t)[0]; y.parentNode.insertBefore(o, y);
+            g.identify = function (i, v) { g(l, { uid: i }); if (v) g(l, v) }; g.setUserVars = function (v) { g(l, v) };
+            g.identifyAccount = function (i, v) { o = 'account'; v = v || {}; v.acctId = i; g(o, v) };
+            g.clearUserCookie = function (c, d, i) {
+                if (!c || document.cookie.match('fs_uid=[`;`]`[`;`]`[`;`]*`')) {
+                    d = n.domain; while (1) {
+                        n.cookie = 'fs_uid=;domain=' + d +
+                            ';path=/;expires=' + new Date(0).toUTCString(); i = d.indexOf('.'); if (i < 0) break; d = d.slice(i + 1)
+                    }
+                }
+            };
+        })(window, document, window['_fs_namespace'], 'script', 'user');
+    </script>-->
+
+    <!-- comentei o codigo pq estamos usando ele no ambiente de teste da pepsico 
+    <script>
+        window.ga = window.ga || function () { (ga.q = ga.q || []).push(arguments) }; ga.l = +new Date;
+        ga('create', 'UA-105888552-1', 'auto');
+
+        // Replace the following lines with the plugins you want to use.
+        ga('require', 'eventTracker');
+        ga('require', 'outboundLinkTracker');
+        ga('require', 'urlChangeTracker');
+        // ...
+        ga('send', 'pageview');
+    </script>
+    <script async src="https://www.google-analytics.com/analytics.js"></script>
+    <script async src="node_modules/autotrack/autotrack.js"></script>
+
+    <!-- BEGIN JIVOSITE CODE -->
+    <script type='text/javascript'>
+        (function () { var widget_id = 'DVcGkcR93D'; var d = document; var w = window; function l() { var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = '//code.jivosite.com/script/widget/' + widget_id; var ss = document.getElementsByTagName('script')[0]; ss.parentNode.insertBefore(s, ss); } if (d.readyState == 'complete') { l(); } else { if (w.attachEvent) { w.attachEvent('onload', l); } else { w.addEventListener('load', l, false); } } })();
+    </script>
+    <!-- END JIVOSITE CODE -->
+</body>
+
+</html>

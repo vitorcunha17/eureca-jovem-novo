@@ -1,0 +1,115 @@
+<div class="demo-md-panel" layout-fill layout="column" class="ng-cloak">
+    <div class="container-fluid" style="background: #FFFFFF;">
+        <!-- div para mobile -->
+        <div class="row" style="overflow: hidden">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="background: url('{{diretorioImagens}}/oportunidades/{{oportunidade.idOp}}/{{bannerOportunidade}}'); background-size: cover; background-position: center; height: 350px;">
+
+            </div>
+            <div class="logo-oportunidade-mobile centerComMargin">
+                <div class="logo-cliente-oportunidade-mobile">
+                    <img src="{{diretorioImagens}}/clientes/{{oportunidade.cliente.idCliente}}/{{oportunidade.cliente.imagem}}" class="img-logo-oportunidade "
+                    />
+                    <md-button class="md-raised md-primary btnPrincipais btn-azul btn-logo-oportunidade
+                  " ng-click="irDesafios(oportunidade)">
+                        ENVIAR DESAFIOS
+                    </md-button>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 descOportunidade opMargin">
+                <div class="md-padding">
+                    <span class="md-headline titulo-oportunidade ">{{oportunidade.nome}}</span>
+                    <p ng-bind-html="oportunidade.descricao" class="texto-oportunidade md-subhead ">
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="text-align: center; overflow: hidden">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
+                <span class="md-headline titulo-oportunidade md-padding">SOBRE A OPORTUNIDADE</span>
+            </div>
+        </div>
+        <div class="row centerComMargin rowOportunidade" style="overflow: hidden">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <youtube-video class="visible-md visible-lg md-padding" video-url="videoIntro" style="min-width: 100%;"></youtube-video>
+                <a target="_blank" class="hidden-md hidden-lg md-padding" ng-href="{{videoIntro}}"><img style="max-width: 280px" ng-src="img/youTubeIcon.png" /></a>
+            </div>
+        </div>
+        <div class="row centerComMargin rowOportunidade" style="overflow: hidden">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <span class="md-headline titulo-oportunidade ">A JORNADA DO PARTICIPANTE</span>
+                <div>
+                    <timeline>
+                        <timeline-event ng-repeat="item in timeline " side>
+                            <timeline-badge class="timeline-hidden " when-visible="animateElementIn
+                  " when-not-visible="animateElementOut ">
+                                <i class="material-icons iconeTimeLine ">{{item.icone}}</i>
+                            </timeline-badge>
+                            <timeline-panel class="timeline-hidden " when-visible="animateElementIn " when-not-visible="animateElementOut
+                  " style="font-size: 15px; ">
+                                <p>{{item.descricao}}</p>
+                                <small style="font-size: 12px; text-align: right;" class="text-muted ng-binding "><i class="fa fa-clock-o "></i> {{item.data | date:"dd/MM/yyyy '-' h:mm a"}}</small>
+                            </timeline-panel>
+                        </timeline-event>
+                    </timeline>
+                </div>
+            </div>
+        </div>
+        <div class="row centerComMargin rowOportunidade" style="overflow: hidden">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <md-tabs md-dynamic-height md-border-bottom>
+                    <md-tab class="md-headline titulo-oportunidade" label="IMPORTANTE SABER">
+                        <div class="md-padding">
+                            <div class="md-accordion" ng-repeat="dica in oportunidade.dicas">
+                                <md-toolbar ng-init="dica.expanded = dica.destaque" ng-click="collapseAll(dica)">
+                                    <div class="md-toolbar-tools titulo">
+                                        <h2><span>{{dica.titulo}}</span></h2>
+                                        <span flex=""></span>
+                                        <span ng-class="{expandCollapse:true, active:dica.expanded}"></span>
+                                    </div>
+                                </md-toolbar>
+                                <div ng-class="{dataContent:true, activeContent:dica.expanded}" ng-bind-html="dica.descricao"></div>
+                                <div>
+                                </div>
+                            </div>
+                        </div>
+                    </md-tab>
+                    <md-tab class="titulo-oportunidade" label="F.A.Q.">
+                        <div class="md-padding">
+                            <div class="md-accordion" ng-repeat="faq in oportunidade.faq track by $index">
+                                <md-toolbar ng-init="faq.expanded = faq.destaque" ng-click="collapseAll(faq)">
+                                    <div class="md-toolbar-tools titulo">
+                                        <h2><span>{{faq.titulo}}</span></h2>
+                                        <span flex=""></span>
+                                        <span ng-class="{expandCollapse:true, active:faq.expanded}"></span>
+                                    </div>
+                                </md-toolbar>
+                                <div ng-class="{dataContent:true, activeContent:faq.expanded}" ng-bind-html="faq.descricao"></div>
+                                <div>
+                                </div>
+                            </div>
+                        </div>
+                    </md-tab>
+                </md-tabs>
+                <!-- <span class="md-headline titulo-oportunidade ">IMPORTANTE SABER</span>-->
+
+            </div>
+        </div>
+        <div class="row centerComMargin rowOportunidade" id="vagas" style="margin-bottom: 30px; overflow: hidden">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <span class="md-headline titulo-oportunidade ">VAGAS DISPONÍVEIS</span>
+                <div ng-repeat="vaga in oportunidade.vagas ">
+                    <div layout="row" layout-xs="column" layout-align="start start ">
+                        <div class="vagasDisponiveis ">
+                            <h5 style="color: #565656;margin-top: 5px">{{vaga.titulo}}</h5>
+                            <h6 style="color: #565656;">{{vaga.cidade}}/{{vaga.uf}}</h6>
+                        </div>
+                        <md-button class="btn-amarelo botaoVagas
+                  " ng-click="irDesafios(oportunidade)">
+                            Enviar desafios
+                        </md-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

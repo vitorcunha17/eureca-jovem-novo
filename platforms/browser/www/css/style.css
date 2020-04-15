@@ -1,0 +1,257 @@
+/* acho que era do outro login comentando
+
+.login {
+    background: rgba(224, 221, 224, 1);
+    background: -moz-radial-gradient(center, ellipse cover, rgba(224, 221, 224, 1) 0%, rgba(199, 199, 199, 1) 100%);
+    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(224, 221, 224, 1)), color-stop(100%, rgba(199, 199, 199, 1)));
+    background: -webkit-radial-gradient(center, ellipse cover, rgba(224, 221, 224, 1) 0%, rgba(199, 199, 199, 1) 100%);
+    background: -o-radial-gradient(center, ellipse cover, rgba(224, 221, 224, 1) 0%, rgba(199, 199, 199, 1) 100%);
+    background: -ms-radial-gradient(center, ellipse cover, rgba(224, 221, 224, 1) 0%, rgba(199, 199, 199, 1) 100%);
+    background: radial-gradient(ellipse at center, rgba(224, 221, 224, 1) 0%, rgba(199, 199, 199, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#e0dde0', endColorstr='#c7c7c7', GradientType=1);
+} */
+
+.numeros {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.numeros_baixo {
+    font-size: 12px;
+}
+
+.gridStyle {
+    border: 1px solid rgb(212, 212, 212);
+    width: 400px;
+    height: 300px
+}
+
+.headerEureca {
+    height: 150px;
+    min-height: 150px;
+    max-height: 150px;
+    padding: 24px;
+    background-image: url(../img/header-bg.png);
+    background-size: cover;
+    background-color: rgb(3, 155, 229);
+    color: rgba(255, 255, 255, 1);
+}
+
+.tabsEureca {
+    background: #FFFFFF;
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+    padding: 0 24px;
+    border-color: rgba(0, 0, 0, 0.12);
+}
+
+.avatar {
+    width: 40px;
+    min-width: 40px;
+    height: 40px;
+    line-height: 40px;
+    margin: 0 8px 0 0;
+    border-radius: 50%;
+    font-size: 17px;
+    font-weight: 500;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.toolbar-separator {
+    height: 64px;
+    width: 1px;
+    background: rgba(0, 0, 0, 0.12);
+}
+
+.username {
+    margin: 0 12px 0 8px;
+    font-size: 14px;
+}
+
+.logoMenu {
+    height: 46px;
+}
+
+.logoLogin {
+    margin: 0 auto;
+    height: 58px;
+}
+
+.conteudo {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    position: relative;
+    overflow: hidden;
+    visibility: visible;
+    opacity: 1;
+    z-index: 10;
+    border-radius: 2px;
+    -webkit-transition: visibility 0s ease-in 0.2s, opacity 0s ease-in 0.2s, -webkit-transform 0.5s ease-out 0s;
+    transition: visibility 0s ease-in 0.2s, opacity 0s ease-in 0.2s, -webkit-transform 0.5s ease-out 0s;
+    transition: transform 0.5s ease-out 0s, visibility 0s ease-in 0.2s, opacity 0s ease-in 0.2s;
+    transition: transform 0.5s ease-out 0s, visibility 0s ease-in 0.2s, opacity 0s ease-in 0.2s, -webkit-transform 0.5s ease-out 0s;
+    -webkit-transform: rotateY(0deg);
+    transform: rotateY(0deg);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+    background: #fff;
+    width: 94%;
+    margin: 20px;
+}
+
+.md-tabs-canvas {
+    background: #fff !important;
+}
+
+.botoesTop {
+    margin-top: -30px;
+    margin-left: 30px;
+}
+
+.btnPrincipais {
+    padding: 8px 20px 8px 20px;
+}
+
+.md-autocomplete-suggestions-container {
+    min-width: 350px !important;
+    width: 350px !important;
+}
+
+.md-contact-name {
+    width: 100% !important;
+}
+
+.login {
+    text-transform: none;
+    color: #666464;
+    -webkit-flex-shrink: 0;
+    flex-shrink: 0;
+    background: #fff;
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+    display: block;
+    margin: 0 auto;
+    min-height: 0;
+    width: 400px;
+    height: 450px;
+    margin-top: -250px;
+    top: 50%;
+    padding: 20px;
+}
+
+.loadingLogin {
+    margin-left: -20px;
+    margin-right: -20px;
+    margin-top: -20px;
+    margin-bottom: 20px;
+}
+
+.loginCampos {
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+.login a {
+    text-decoration: none;
+}
+
+@media screen and (max-width: 767px) {
+    .login {
+        width: 90%;
+        height: 100%;
+        margin-top: 0px;
+        top: 0px;
+        padding: 20px;
+        padding-top: 150px;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+}
+
+.login-page .input-lg {
+    color: #2d323e;
+}
+
+@media screen and (min-width: 720px) {
+    .intro {
+        max-width: 48%;
+    }
+}
+
+
+/* classes de estilo para os cards de oportunidade */
+
+.oportunidade .capa {
+    background-size: 100%;
+    height: 312px;
+}
+
+.oportunidade .titulo {
+    background-color: #f1f1f1;
+}
+
+.oportunidade .corpo {
+    background-color: #f1f1f1;
+    height: auto;
+    text-transform: none;
+    text-align: justify;
+}
+
+
+/*Vídeo*/
+
+.banner-opportunities-img {
+    width: 100% !important;
+    height: 10% !important;
+}
+
+.opportunity-heading-decorated {
+    padding: 10px 0 0 0;
+    position: relative;
+    text-align: left;
+    padding-left: 8px;
+}
+
+.opportunity-heading {
+    font-size: 18px;
+    text-transform: lowercase;
+    margin: 0 0 30px 0;
+    color: #cc66ff;
+}
+
+.opportunity-heading-decorated:before {
+    content: '';
+    width: 100px;
+    height: 7px;
+    background-color: #cc66ff;
+    position: absolute;
+    top: 0;
+    left: 8px;
+}
+
+.opportunity-heading strong {
+    color: #6699ff;
+    font-size: 35px;
+    text-transform: uppercase;
+    display: block;
+    line-height: 50px;
+}
+
+.iconeTimeLine {
+    font-size: 34px;
+    margin-top: 7px;
+    margin-left: 2px;
+}
+
+.not-visible {
+  visibility: hidden;
+}

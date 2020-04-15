@@ -1,0 +1,95 @@
+<div class="demo-md-panel"  layout="column">
+    <md-content >
+        <div class="header md-accent-bg layout-align-space-between-stretch headerEureca" layout="column" layout-align="space-between">
+            <div layout-align="space-between" class="layout-align-space-between-stretch">
+                <div>
+                    <span class="md-display-1 font-weight-300">Cadastro de qualificação</span>
+                </div>
+            </div>
+            <div  layout="row">
+                <label><b>{{"Formação: " }}</b></label>
+            </div>
+        </div>
+        <form name="qualificacaoForm"  ng-submit="alterarQualificacao(pessoa)">
+            <div  layout-align="center center">
+                <md-content class="md-padding conteudo">
+                    <div layout-gt-sm="row">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Tipo</label>
+                            <md-select name="tipo" ng-model="pessoa.qualificacao.tipo">
+                                <md-option ng-repeat="item in tipoQualificacao" value="{{item.valor}}">
+                                    {{item.descricao}}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+                    </div>
+                    <div ng-switch="pessoa.qualificacao.tipo">
+                        <div ng-controller="autoCompleteCurso as ctrl" ng-switch-when="0">
+                            <md-autocomplete required name="curso" ng-model="pessoa.qualificacao.curso" md-input-name="curso" md-no-cache="ctrl.noCache" md-selected-item="pessoa.qualificacao.curso" md-search-text="ctrl.searchText" md-items="item in ctrl.querySearch(ctrl.searchText)" md-item-text="item.display" md-require-match md-floating-label="Curso">
+                                <md-item-template>
+                                    <span md-highlight-text="ctrl.searchText">{{item.display}}</span>
+                                </md-item-template>
+                                <div ng-messages="qualificacaoForm.curso.$error" ng-if="qualificacaoForm.curso.$touched">
+                                    <div ng-message="md-require-match">
+                                        O curso precisa ser informado!
+                                    </div>
+                                </div>
+                            </md-autocomplete>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <input required name="universidade " ng-model="pessoa.qualificacao.local " placeholder="Universidade">
+                            </md-input-container>
+                        </div>
+                        <div ng-switch-when="1">
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <input required name="titulo " ng-model="pessoa.qualificacao.titulo " placeholder="Cargo/Função">
+                            </md-input-container>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <input required name="local " ng-model="pessoa.qualificacao.local " placeholder="Organização/Empresa">
+                            </md-input-container>
+                        </div>
+                        <div ng-switch-when="2">
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <input required name="titulo " ng-model="pessoa.qualificacao.titulo " placeholder="Curso">
+                            </md-input-container>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <input required name="local " ng-model="pessoa.qualificacao.local " placeholder="Onde?">
+                            </md-input-container>
+                        </div>
+                        <div ng-switch-when="3">
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <input required name="titulo " ng-model="pessoa.qualificacao.titulo " placeholder="Qual foi a experiência?">
+                            </md-input-container>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <input required name="local " ng-model="pessoa.qualificacao.local " placeholder="Onde foi?">
+                            </md-input-container>
+                        </div>
+                    </div>
+                    <div layout-gt-sm="row" ng-show="pessoa.qualificacao.tipo != null">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <input required mdc-datetime-picker="" type="text" id="inicio" placeholder="Início" min-date="minDate" ng-model="pessoa.qualificacao.inicio" readonly="readonly" time="false" today-text="Hoje" cancel-text="Cancelar" format="MM/YYYY">
+                        </md-input-container>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <input required mdc-datetime-picker="" type="text" id="termino" placeholder="Término" min-date="minDate" ng-model="pessoa.qualificacao.fim" readonly="readonly" time="false" today-text="Hoje" cancel-text="Cancelar" format="MM/YYYY">
+                        </md-input-container>
+                    </div>
+                    <div layout-gt-sm="row" ng-show="pessoa.qualificacao.tipo != null">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <textarea required name="descricao" maxlength="1500" rows="5" ng-model="pessoa.qualificacao.descricao" placeholder="Descrição"></textarea>
+                            <div ng-messages="qualificacaoForm.descricao.$error" role="alert">
+                                <div ng-message-exp="['required']">
+                                    Qualificacao é dado obrigatório!
+                                </div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                </md-content>
+                <div layout="row " layout-align="center center ">
+                    <md-button ng-disabled="qualificacaoForm.$invalid" class="md-raised md-primary btnPrincipais" type="submit">
+                        <md-icon class="material-icons">&#xE161;</md-icon> Salvar</md-button>
+                    <md-button class="md-raised md-accent btnPrincipais" ng-click="cancelarCadQualificacao()">
+                        <md-icon class="material-icons">&#xE5C9;</md-icon> Cancelar</md-button>
+                </div>
+            </div>
+        </form>
+    </md-content>
+</div>

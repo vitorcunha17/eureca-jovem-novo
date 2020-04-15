@@ -1,0 +1,50 @@
+<!--
+<div style="position: fixed; top: 5px; right: 10px;">
+    <md-button class="md-icon-button" ng-click="home()">
+        <md-icon style="color: #fff; font-size: 36px;" class="material-icons iconeMenu">&#xE88A;</md-icon>
+    </md-button>
+</div>-->
+<div class="background">
+    <div class="loginNovo">
+        <form class="loginForm" name="loginForm" ng-submit="autenticar(usuario,'/dashboard')">
+            <div ng-show="loading" layout="row" layout-sm="row" layout-align="center start" class="loadingLogin">
+                <md-progress-linear md-mode="indeterminate"></md-progress-linear>
+            </div>
+            <div ng-disabled="loading">
+                <div layout="column" layout-align="center center" flex>
+                    <img src="img/circulo-amarelo-eu.png" class="logoLogin" />
+                </div>
+                <br>
+                <br>
+            </div>
+            <div class="">
+                <md-input-container class="md-block labelBranco" flex-gt-sm>
+                    <input style="color: #fff; border-color:#fff;" required name="usuario" ng-model="usuario.nome" placeholder="Informe seu e-mail">
+                    <div ng-messages="oportunidadeForm.usuario.$error" role="alert">
+                        <div class="colorLetra" ng-message-exp="['required']">
+                            E-mail é obrigatório!
+                        </div>
+                    </div>
+                </md-input-container>
+                <md-input-container class="md-block labelBranco" flex-gt-sm>
+                    <input style="color: #fff; border-color: #fff;" required name="senha" ng-model="usuario.senha" type="password" placeholder="Informe sua senha">
+                    <div ng-messages="oportunidadeForm.senha.$error" role="alert">
+                        <div ng-message-exp="['required']">
+                            Senha é obrigatória!
+                        </div>
+                    </div>
+                </md-input-container>
+            </div>
+            <div layout="column" style="padding-bottom: 10px;">
+                <md-button style="background-color: rgb(252, 217, 0); color: rgb(32, 58, 235); font-weight: bold; height: 60px" class="md-raised md-primary" type="submit">
+                    Entrar
+                </md-button>
+                <div flex layout="row" laytout-sm="column">
+                    <p><a style="color: #fff;" ng-click="abrirDialogPasswordReset($event)">Esqueceu sua senha?</a></p>
+                    &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; &ensp;&ensp;&ensp;&ensp;&ensp;
+                    <p><a style="color: #fff;" ng-click="cadastro()">Fazer meu Cadastro</a></p>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

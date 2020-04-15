@@ -1,0 +1,23 @@
+<md-dialog>
+    <form class="ng-cloak">
+        <md-dialog-content ng-controller="oportunidadeCtrl">
+            <div class="md-dialog-content">
+                <div flex="50" flex-gt-md="50" flex-xs="100" flex-sm="100" layout="column" style="margin-top:8px;">
+                    <h1 class="opportunity-heading opportunity-heading-decorated opportunity-heading-how-to">saiba<strong>Como participar</strong></h1>
+                    <div class="md-accordion" ng-repeat="vaga in oportunidade.vagas">
+                        <md-toolbar ng-init="vaga.expanded = oportunidade.vagas[0]" ng-click="collapseAll(vaga)">
+                            <div class="md-toolbar-tools titulo">
+                                <h2><span>{{vaga.titulo}}</span></h2>
+                                <span flex=""></span>
+                                <span ng-class="{expandCollapse:true, active:vaga.expanded}"></span>
+                            </div>
+                        </md-toolbar>
+                        <div ng-class="{dataContent:true, activeContent:vaga.expanded}">{{vaga.descricao}}</div>
+                        <div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </md-dialog-content>
+    </form>
+</md-dialog>

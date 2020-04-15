@@ -1,0 +1,19 @@
+<div layout="row" layout-align="start center">
+    <div layout="row" layout-align="start center" flex >
+        <md-button id="navigation-toggle" class="md-icon-button" hide-gt-sm ng-click="abreMenu()">
+            <md-icon class="material-icons iconeToolbar">&#xE5D2;</md-icon>
+        </md-button>
+        <div class="toolbar-separator"></div>
+    </div>
+    <div layout="row" layout-align="start center">
+        <div layout="row" layout-align="space-between center">
+            <div class="avatar-wrapper">
+                <span class="username">{{userLogado.nome}}</span>
+            </div>
+        </div>
+        <div class="toolbar-separator"></div>
+        <md-button class="md-icon-button" ng-click="logout()">
+            <md-icon class="material-icons iconeToolbar">&#xE879;</md-icon>
+        </md-button>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+<div layout="column" layout-align="center center" flex class="userAvatarArea">
+    <div class="userAvatar" style="background: url('{{diretorioImagens}}/amigos/{{usuarioLogado.pessoa.id}}/{{usuarioLogado.pessoa.imagem}}'); background-size: 100%;"
+        ng-if="pessoa.imagem != null">
+    </div>
+    <div class="userAvatar" style="background: url('img/avatar.png'); background-size: 100%;" 
+        ng-if="pessoa.imagem == null">
+    </div>
+    <br>
+    <p class="userAvatarFonte">{{usuarioLogado.pessoa.nome}}</p>
+</div>
+<md-divider style="margin-top: 10px; background: #ccc;"></md-divider>
+<md-content class="navigation-content" layout="column" layout-align="start stretch" style="width: 70%; margin: 0 auto;">
+    <md-button class="md-primary " ng-click="dashboard()">
+        Painel
+    </md-button>
+    <!--<md-button class="md-primary " ng-click="perfil()">
+        Meu CV
+    </md-button>-->
+    <md-button class="md-primary " ng-click="oportunidades()">
+        Oportunidades
+    </md-button>
+    <md-button class="md-primary" ng-click="logout()">
+        Sair
+    </md-button>
+</md-content>
+<div layout="column" layout-align="center center" style="margin-top: 300px;" flex>
+    <img style="width: 18%" ng-src="img/Logo Eu_.png" src="img/userAvatar.png">
+    <p class="sobreEU">Sobre a Eureca!</p>
+</div>

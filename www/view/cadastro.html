@@ -1,0 +1,70 @@
+<div style="background-color: #FFF !important; width: 100%; height: 100%;">
+<!--<div style="position: fixed; top: 5px; right: 10px;">
+    <md-button class="md-icon-button " ng-click="home()">
+        <md-icon style="color: #1b30c3; font-size: 36px;" class="material-icons iconeMenu">&#xE88A;</md-icon>
+    </md-button>
+</div>-->
+    <div class="cadastroNovo">
+      <form class="loginForm" name="cadastroForm" >
+              <div ng-show="loading" layout="row" layout-sm="row" layout-align="center start" class="loadingLogin">
+                  <md-progress-linear md-mode="indeterminate"></md-progress-linear>
+              </div>
+              <div ng-disabled="loading">
+                <div layout="column" layout-align="center start" flex>
+                    <img src="img/circulo-amarelo-eu.png" class="logoLogin" />
+                </div>
+                <br>
+                  <div louyout="colum" style="color: #1b30c3 !important;">
+                    <center>
+                      <p style="font-size: 20px; margin-bottom: 0px; font-weight: bold;">Cadastro na plataforma</p>
+                      <p style="margin-top: 0px;">Oportunidades incríveis estão te esperando!</p>
+                    </center>
+                  </div>
+                  <div class="">
+                      <md-input-container class="md-block label-azul" flex-gt-sm>
+                          <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-user-o fa-fw" aria-hidden="true"></i>&nbsp;&nbsp; NOME</label>
+                          <input required name="nome" ng-model="usuario.nome" style="color: #1b30c3">
+                          <div ng-messages="oportunidadeForm.usuario.$error" role="alert">
+                              <div ng-message-exp="['required']">
+                                  Nome é obrigatório!
+                              </div>
+                          </div>
+                      </md-input-container>
+                      <md-input-container class="md-block label-azul" flex-gt-sm>
+                          <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-envelope-o fa-fw" aria-hidden="true"></i>&nbsp;&nbsp; EMAIL</label>
+                          <input required name="usuario" ng-model="usuario.usuario" ng-change="usuario.usuario = (usuario.usuario | lowercase)"  style="color: #1b30c3">
+                          <div ng-messages="oportunidadeForm.usuario.$error" role="alert">
+                              <div ng-message-exp="['required']">
+                                  Email é obrigatório!
+                              </div>
+                          </div>
+                      </md-input-container>
+                      <md-input-container class="md-block label-azul" flex-gt-sm>
+                          <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-lock fa-fw" aria-hidden="true"></i>&nbsp;&nbsp; SENHA</label>
+                          <input required name="senha" ng-model="usuario.senha" style="color: #1b30c3" type="password">
+                          <div ng-messages="oportunidadeForm.senha.$error" role="alert">
+                              <div ng-message-exp="['required']">
+                                  Senha é obrigatória!
+                              </div>
+                          </div>
+                      </md-input-container>
+                      <md-input-container class="md-block label-azul" flex-gt-sm>
+                          <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-lock fa-fw" aria-hidden="true"></i>&nbsp;&nbsp; CONFIRMAÇÃO DE SENHA</label>
+                          <input required name="senha2" ng-model="usuario.senha2" style="color: #1b30c3" type="password">
+                      </md-input-container>
+                  </div>
+
+                  <center>
+                    <div layout="column" layout-align="center end" flex>
+                        <md-button ng-click="cadastrar(usuario)" style="background-color: rgb(252, 217, 0); color: rgb(32, 58, 235); width: 100%" class="md-raised md-primary" >
+                            Cadastrar
+                        </md-button>
+                    </div>
+                    <p>
+                      <a class="md-raised md-primary" ng-click="login()" style="color: #1b30c3; padding-right: 47px;">Voltar para login</a>
+                    </p>
+                  </center>
+              </div>
+      </form>
+    </div>
+</div>

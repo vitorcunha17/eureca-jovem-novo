@@ -1,0 +1,269 @@
+<div class="demo-md-panel" layout-fill layout="column">
+    <md-content layout-fill>
+        <div class="header md-accent-bg layout-align-space-between-stretch headerEureca" layout="column" layout-align="space-between">
+            <div layout-align="space-between" class="layout-align-space-between-stretch">
+                <div>
+                    <span class="md-display-1 font-weight-300">{{userLogado.nome}}</span>
+                </div>
+            </div>
+            <div layout-fill layout="row">
+                <label><b>Aqui você pode visualizar e editar o seu perfil</b></label>
+            </div>
+        </div>
+        <form name="perfilForm" layout-fill ng-submit="salvarPerfil(pessoa)" data-ng-init="carregarPerfilPessoaSeNulo()">
+            <div layout-fill layout-align="center center">
+                <md-tabs md-dynamic-height md-border-bottom>
+                    <md-tab label="Informações Pessoais">
+                        <md-content class="md-padding conteudo">
+                            <div layout-gt-sm="row">
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <input required name="nome" ng-model="pessoa.nome" placeholder="Nome completo">
+                                    <div ng-messages="perfilForm.nome.$error" role="alert">
+                                        <div ng-message-exp="['required']">
+                                            Nome é dado obrigatório!
+                                        </div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                            <div layout-gt-sm="row">
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <input required name="email" ng-model="pessoa.email" placeholder="E-mail">
+                                </md-input-container>
+                            </div>
+                            <div layout-gt-sm="row">
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <textarea required name="apresentacao" maxlength="500" rows="5" ng-model="pessoa.apresentacao" placeholder="Conte um pouco sobre você"></textarea>
+                                    <div ng-messages="perfilForm.apresentacao.$error" role="alert">
+                                        <div ng-message-exp="['required']">
+                                            Apresentação é dado obrigatório!
+                                        </div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                            <div layout-gt-sm="row">
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <input mdc-datetime-picker="" type="text" id="dataNascimento" placeholder="Data de nascimento" min-date="minDate" ng-model="pessoa.aniversario" readonly="readonly" time="false" today-text="Hoje" cancel-text="Cancelar" format="DD/MM/YYYY" required>
+                                </md-input-container>
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label>Gênero</label>
+                                    <md-select required name="genero" ng-model="pessoa.genero" aria-label="Selecione o gênero">
+                                        <md-option ng-repeat="item in generos" value="{{item.valor}}">
+                                            {{item.descricao}}
+                                        </md-option>
+                                    </md-select>
+                                </md-input-container>
+                            </div>
+                        </md-content>
+                    </md-tab>
+                    <md-tab label="Endereço">
+                        <md-content class="md-padding conteudo">
+                            <div layout-gt-sm="row">
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <input name="codigoPostal " ng-model="pessoa.endereco.cep" ui-br-cep-mask ng-change=buscarCodigoPostal(pessoa.endereco.cep) placeholder="Código Postal">
+                                    <div ng-messages="vagaForm.codigoPostal.$error " role="alert ">
+                                        <div ng-message="required " class="my-message ">Código Postal é dado obrigatório</div>
+                                        <div ng-message="pattern " class="my-message ">O Código Postal não é Válido</div>
+                                        <div ng-message="md-maxlength " class="my-message ">O tamanho máximo do Código Postal é de 8 digitos</div>
+                                    </div>
+                                </md-input-container>
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <input name="cidade " ng-model="pessoa.endereco.localidade" placeholder="Município">
+                                </md-input-container>
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <input name="estado " ng-model="pessoa.endereco.uf" placeholder="Estado">
+                                </md-input-container>
+                            </div>
+                            <div layout-gt-sm="row">
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <input name="logradouro" ng-model="pessoa.endereco.logradouro" placeholder="Logradouro">
+                                </md-input-container>
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <input name="numero" ng-model="pessoa.endereco.numero" placeholder="Numero">
+                                </md-input-container>
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <input name="bairro" ng-model="pessoa.endereco.bairro" placeholder="Bairro">
+                                </md-input-container>
+                            </div>
+                        </md-content>
+                    </md-tab>
+                    <md-tab label="Qualificações">
+                        <md-content class="md-padding conteudo">
+                            <md-list class="ng-cloak">
+                                <md-list-item ng-repeat="qualificacao in pessoa.qualificacoes">
+                                    <md-menu>
+                                        <md-button aria-label="Opções" class="md-icon-button" ng-click="openMenu($mdMenu, $event)">
+                                            <md-icon md-menu-origin class="material-icons">&#xE5D2;</md-icon>
+                                        </md-button>
+                                        <md-menu-content width="4">
+                                            <md-menu-item>
+                                                <md-button ng-click="cadastrarQualificacao(qualificacao)">
+                                                    <md-icon class="material-icons">&#xE8FF; </md-icon>
+                                                    Detalhes
+                                                </md-button>
+                                            </md-menu-item>
+                                            <md-divider></md-divider>
+                                            <md-menu-item style="color: red;">
+                                                <md-button ng-click="removeItemList(qualificacao,pessoa.qualificacoes)">
+                                                    <md-icon class="material-icons md-accent">&#xE92B; </md-icon>
+                                                    Remover
+                                                </md-button>
+                                            </md-menu-item>
+                                        </md-menu-content>
+                                    </md-menu>
+                                    Item - {{qualificacao.titulo}}
+                                </md-list-item>
+                            </md-list>
+                        </md-content>
+                        <div layout-fill layout="row " layout-align="end">
+                            <md-button class="md-fab" ng-click="cadastrarQualificacao()">
+                                <md-icon class="material-icons">&#xE145;</md-icon>
+                            </md-button>
+                            <!-- vou fazer dentro da tela até resolver pq vem sempre aberto
+                            <md-fab-speed-dial md-open="false" md-direction="up" ng-class="md-fling">
+                                <md-fab-trigger>
+                                    <md-button aria-label="menu" class="md-fab md-warn">
+                                        <md-icon class="material-icons">&#xE145;</md-icon>
+                                    </md-button>
+                                </md-fab-trigger>
+                                <md-fab-actions>
+                                    <md-button aria-label="Formação" class="md-fab md-raised md-mini">
+                                        <md-icon class="material-icons">&#xE145;</md-icon>
+                                    </md-button>
+                                    <md-button aria-label="Profissional" class="md-fab md-raised md-mini">
+                                        <md-icon class="material-icons">&#xE145;</md-icon>
+                                    </md-button>
+                                    <md-button aria-label="Outros cursos" class="md-fab md-raised md-mini">
+                                        <md-icon class="material-icons">&#xE145;</md-icon>
+                                    </md-button>
+                                </md-fab-actions>
+                            </md-fab-speed-dial>-->
+                        </div>
+                    </md-tab>
+                    <!-- removendo as abas que foram pra qualificacao
+                    <md-tab label="Experiência profissional">
+                        <md-content class="md-padding conteudo">
+                            <div layout-gt-sm="row">
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <input name="cargo " ng-model="exp.cargo " placeholder="Cargo">
+                                </md-input-container>
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <input name="organizacao " ng-model="exp.organizacao " placeholder="Organização">
+                                </md-input-container>
+                            </div>
+                            <div layout-gt-sm="row">
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <input mdc-datetime-picker="" type="text" id="inicio" placeholder="Início" min-date="minDate" ng-model="exp.inicio" readonly="readonly" time="false" today-text="Hoje" cancel-text="Cancelar" format="DD/MM/YYYY">
+                                </md-input-container>
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <input mdc-datetime-picker="" type="text" id="termino" placeholder="Término" min-date="minDate" ng-model="exp.termino" readonly="readonly" time="false" today-text="Hoje" cancel-text="Cancelar" format="DD/MM/YYYY">
+                                </md-input-container>
+                            </div>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Descrição</label>
+                                <textarea name="descricao" maxlength="500" rows="5" ng-model="exp.descricao" placeholder="Descrição sobre experiência profissional"></textarea>
+                            </md-input-container>
+                        </md-content>
+                    </md-tab>
+                    <md-tab label="Outras experiência">
+                        <md-content class="md-padding conteudo">
+                            <div layout-gt-sm="row">
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <input name="cargo " ng-model="oexp.cargo " placeholder="Cargo">
+                                </md-input-container>
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <input name="organizacao " ng-model="oexp.organizacao " placeholder="Organização">
+                                </md-input-container>
+                            </div>
+                            <div layout-gt-sm="row">
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <input mdc-datetime-picker="" type="text" id="inicio" placeholder="Início" min-date="minDate" ng-model="oexp.inicio" readonly="readonly" time="false" today-text="Hoje" cancel-text="Cancelar" format="DD/MM/YYYY">
+                                </md-input-container>
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <input mdc-datetime-picker="" type="text" id="termino" placeholder="Término" min-date="minDate" ng-model="oexp.termino" readonly="readonly" time="false" today-text="Hoje" cancel-text="Cancelar" format="DD/MM/YYYY">
+                                </md-input-container>
+                            </div>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Descrição</label>
+                                <textarea name="outras-descricao" maxlength="500" rows="5" ng-model="oexp.descricao" placeholder="Descrição sobre experiência profissional"></textarea>
+                            </md-input-container>
+                        </md-content>
+                    </md-tab>
+                    <md-tab label="Cursos">
+                        <md-content class="md-padding conteudo">
+                            <div layout-gt-sm="row">
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <input name="curso" ng-model="cursos.curso " placeholder="Curso">
+                                </md-input-container>
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <input name="localidade " ng-model="cursos.local " placeholder="Onde?">
+                                </md-input-container>
+                            </div>
+                            <div layout-gt-sm="row">
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <input mdc-datetime-picker="" type="text" id="inicio" placeholder="Início" min-date="minDate" ng-model="cursos.inicio" readonly="readonly" time="false" today-text="Hoje" cancel-text="Cancelar" format="DD/MM/YYYY">
+                                </md-input-container>
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <input mdc-datetime-picker="" type="text" id="termino" placeholder="Término" min-date="minDate" ng-model="cursos.termino" readonly="readonly" time="false" today-text="Hoje" cancel-text="Cancelar" format="DD/MM/YYYY">
+                                </md-input-container>
+                            </div>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Descrição</label>
+                                <textarea name="cursos-descricao" maxlength="500" rows="5" ng-model="cursos.descricao" placeholder="Descrição sobre experiência profissional"></textarea>
+                            </md-input-container>
+                        </md-content>
+                    </md-tab>
+                    -->
+                    <md-tab label="Habilidades">
+                        <md-content class="md-padding conteudo">
+                            <div layout-gt-sm="row">
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <input name="nome " ng-model="pessoa.habilidades[0].nome " placeholder="Nome da Habilidade">
+                                </md-input-container>
+                            </div>
+                        </md-content>
+                    </md-tab>
+                    <md-tab label="Idiomas">
+                        <md-content class="md-padding conteudo">
+                            <div layout-gt-sm="row">
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <input name="idioma " ng-model="pessoa.idiomas[0].nome" placeholder="Idioma">
+                                </md-input-container>
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label>Nível</label>
+                                    <md-select name="nivel" ng-model="pessoa.idiomas[0].nivel" aria-label="Selecione o nível">
+                                        <md-option ng-repeat="item in niveis" value="{{item.valor}}">
+                                            {{item.descricao}}
+                                        </md-option>
+                                    </md-select>
+                                </md-input-container>
+                            </div>
+                        </md-content>
+                    </md-tab>
+                    <md-tab label="Apreciações">
+                        <md-content class="md-padding conteudo">
+                            <h3 style="color: rgba(0, 0, 0, 0.54);">Uma das formas mais legais e surpreendentes de você se conhecer melhor é perguntando a opinião de pessoas com quem atuou em algum trabalho ou projeto. Nunca fez isso? Então chegou a hora! Escolha pelo menos 1 pessoa (não vale pai, mãe, irmãos...) e peça para te contar uma característica positiva que enxerga em você e a justificativa em até 100 palavras. Você vai poder colecionar essas apreciações positivas aqui no seu perfil da plataforma :)</h3>
+                            <br>
+                            <div layout-gt-sm="row">
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <input name="caracteristica" ng-model="pessoa.apreciacoes[0].caracteristica" placeholder="Caracteristica positiva">
+                                </md-input-container>
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <input name="justificativa " ng-model="pessoa.apreciacoes[0].justificativa" placeholder="Justificativa">
+                                </md-input-container>
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <input name="autor" ng-model="pessoa.apreciacoes[0].autor" placeholder="Nome completo do autor">
+                                </md-input-container>
+                            </div>
+                        </md-content>
+                    </md-tab>
+                </md-tabs>
+                <div layout="row " layout-align="center center ">
+                    <md-button class="md-raised md-primary btnPrincipais" type="submit">
+                        <md-icon class="material-icons">&#xE161;</md-icon> Salvar</md-button>
+                    <md-button class="md-raised md-accent btnPrincipais" ng-click="cancelarCadOportunidade()">
+                        <md-icon class="material-icons">&#xE5C9;</md-icon> Cancelar</md-button>
+                </div>
+            </div>
+        </form>
+    </md-content>
+</div>

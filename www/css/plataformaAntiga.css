@@ -1,0 +1,152 @@
+.challenge-partial-header {
+    margin-top: 50px;
+}
+
+.challenge-partial-name {
+    background-color: #6699ff;
+    border-radius: 5px;
+    font-size: 30px;
+    padding-left: 200px;
+    color: #fff;
+    line-height: 50px;
+    position: relative;
+}
+
+.challenge-partial-required {
+    width: 200px;
+    text-transform: uppercase;
+    color: #ffd537;
+    font-size: 18px;
+    font-weight: normal;
+    display: inline-block;
+    text-align: center;
+    border-left: 3px solid #ffd537;
+    line-height: 50px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.challenge-partial-max-score {
+    text-align: right;
+    height: 25px;
+    border: 1px solid #8cb2c4;
+    line-height: 25px;
+    color: #8cb2c4;
+    padding: 0 3px;
+    font-size: 20px;
+    font-weight: 300;
+    position: relative;
+    width: 665px;
+}
+
+.challenge-partial-score-left-label {
+    padding: 0 3px;
+    font-size: 20px;
+    font-weight: 300;
+    display: inline-block;
+    width: 100%;
+    text-align: right;
+    line-height: 23px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+
+.challenge-partial-skills {
+    text-align: right;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.challenge-partial-skill-box {
+    display: inline-block;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 20px;
+}
+
+.challenge-partial-skill {
+    width: 90px;
+    height: 61px;
+    background-image: url(https://eureca.s3.amazonaws.com/production/assets/application/skills_badge-75736569e583c7b59e62d50170c22fd2.png);
+    background-color: #ffd537;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.challenge-partial-skill-execution {
+    background-position: 0 0;
+}
+
+.challenge-partial-skill-communication {
+    background-position: -270px 0;
+}
+
+.challenge-partial-skill-leadership {
+    background-position: -90px 0;
+}
+
+.challenge-partial-skill-innovation {
+    background-position: -180px 0;
+}
+
+.challenge-partial-description {
+    margin-top: 50px;
+    padding-left: 115px;
+}
+
+.challenge-partial-heading-steps {
+    margin-top: 50px;
+    padding-left: 115px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.challenges-heading {
+    font-size: 18px;
+    text-transform: lowercase;
+    margin: 0 0 30px 0;
+    color: #cc66ff;
+}
+
+.challenge-step-partial-counter {
+    color: #8cb2c4;
+    background-color: #e4f1fe;
+    text-align: center;
+    line-height: 45px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.challenge-step-partial-title {
+    font-size: 15px;
+    margin: 0;
+    font-weight: bold;
+}
+
+.challenge-step-partial-description {
+    margin-top: 30px;
+}
+
+.challenge-partial-heading-steps {
+    margin-top: 50px;
+    padding-left: 115px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.opportunities-title {
+    font-size: 35px;
+    color: #67809f;
+    text-align: center;
+    text-transform: uppercase;
+    margin: 60px 0 30px 0;
+}
+
+.opportunities-title strong {
+    color: #4183fe;
+}

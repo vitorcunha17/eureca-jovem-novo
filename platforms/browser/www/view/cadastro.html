@@ -1,0 +1,50 @@
+<div class="demo-md-panel" layout-fill layout="column" layout-align="center center">
+    <md-content layout-fill>
+        <form name="cadastroForm" layout-fill ng-submit="cadastrar(usuario)">
+            <md-content class="md-padding login" layout-fill>
+                <div ng-show="loading" layout="row" layout-sm="row" layout-align="center start" class="loadingLogin">
+                    <md-progress-linear md-mode="indeterminate"></md-progress-linear>
+                </div>
+                <div ng-disabled="loading">
+                    <div layout="column" layout-align="center start" flex>
+                        <img src="img/logoEureca.png" class="logoLogin" />
+                    </div>
+                    <div louyout="colum">
+                        <p style="font-size: 20px; margin-bottom: 0px;">Cadastro na plataforma</p>
+                        <p style="margin-top: 0px;">Oportunidades incríveis estão te esperando!</p>
+                    </div>
+                    <div class="loginCampos">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <input required name="usuario" ng-model="usuario.nome" placeholder="Informe seu e-mail">
+                            <div ng-messages="oportunidadeForm.usuario.$error" role="alert">
+                                <div ng-message-exp="['required']">
+                                    E-mail é obrigatório!
+                                </div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <input required name="senha" ng-model="usuario.senha" type="password" placeholder="Informe sua senha">
+                            <div ng-messages="oportunidadeForm.senha.$error" role="alert">
+                                <div ng-message-exp="['required']">
+                                    Senha é obrigatória!
+                                </div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <input required name="senha2" ng-model="usuario.senha2" type="password" placeholder="Informe sua senha">
+                        </md-input-container>
+                    </div>
+                    <div flex layout="row">
+                        <p><a class="md-raised md-primary" ng-click="login()">Voltar para login</a></p>
+                        <div layout="column" layout-align="center end" flex>
+                            <md-button class="md-raised md-primary" type="submit">
+                                Cadastrar
+                                <md-icon class="material-icons">&#xE315;</md-icon>
+                            </md-button>
+                        </div>
+                    </div>
+                </div>
+            </md-content>
+        </form>
+    </md-content>
+</div>

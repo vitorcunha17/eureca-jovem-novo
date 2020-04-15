@@ -1,0 +1,136 @@
+<div class="demo-md-panel" layout="column" class="ng-cloak">
+    <div class="container-fluid" style="background: #FFFFFF; ">
+        <!-- div para mobile -->
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="background: url('{{diretorioImagens}}/oportunidades/{{participacaoDesafio.idOp}}/{{participacaoDesafio.cover}}'); background-size: cover; background-position: center; height: 350px;">
+
+            </div>
+            <div class="logo-oportunidade-mobile centerComMargin">
+                <div class="logo-cliente-oportunidade-mobile">
+                    <img src="{{diretorioImagens}}/clientes/{{participacaoDesafio.cliente.idCliente}}/{{participacaoDesafio.cliente.imagem}}"
+                        class="img-logo-oportunidade " />
+                    <md-button ng-disabled="formOportunidade.$invalid " class="md-raised md-primary btnPrincipais btn-azul btn-logo-oportunidade
+                  ">
+                        DESAFIOS
+                    </md-button>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 descOportunidade">
+                <div class="md-padding" style="text-align: center;">
+                    <span class="md-headline titulo-oportunidade tituloOpDesafio">{{participacaoDesafio.nome}}</span>
+                    <p ng-bind-html="participacaoDesafio.descricao" class="texto-oportunidade md-subhead ">
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div style="max-width: 1180px;" class="centerComMargin">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 comoFunciona">
+                    <span class="md-headline titulo-oportunidade md-padding">COMO FUNCIONA</span>
+                    <p style="margin-left: 8px;">Reserve um tempo para ler com calma as instruções e baixe os regulamentos dos desafios. Você deve enviar
+                        os arquivos pela minha plataforma e aguardar a avaliação da minha família. Os desafios online são
+                        o passaporte para a próxima etapa do processo de seleção.</p>
+                </div>
+                <!--
+                <div class="col-xs-12 col-sm-12 col-md-8 col-lg-9" >
+                    <ui-knob value="80" options="options"></ui-knob>
+                </div>
+                -->
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div flex="100" class="desafioArea" ng-repeat="desafio in participacaoDesafio.desafios">
+                        
+                            <div class="desafioHeader">
+                                <div flex="50" layout="column">
+                                    <h2>Desafio #</h2>
+                                    <h3>{{desafio.titulo}}</h3>
+                                </div>
+                                <!--
+                            <div flex="50" layout="column">
+                                <p>STATUS</p>
+                                <p>PONTUAÇÃO</p>
+                            </div>-->
+                            </div>
+                        
+                        <div class="desafioCELI md-padding row" flex="100" style="text-align: center;">
+                            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3" layout-align="center center">
+                                <img ng-src="img/iconeComunicacao.png" class="iconesCELI" />
+                                <p>
+                                    <input-stars max="3" ng-model="desafio.nivel_comunicacao" readonly="true"></input-stars>
+                                </p>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3" layout-align="center center">
+                                <img ng-src="img/iconeExecucao.png" class="iconesCELI" />
+                                <p>
+                                    <input-stars max="3" ng-model="desafio.nivel_execucao" readonly="true"></input-stars>
+                                </p>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3" layout-align="center center">
+                                <img ng-src="img/iconeLideranca.png" class="iconesCELI" />
+                                <p>
+                                    <input-stars max="3" ng-model="desafio.nivel_lideranca" readonly="true"></input-stars>
+                                </p>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3" layout-align="center center">
+                                <img ng-src="img/iconeInovacao.png" class="iconesCELI" />
+                                <p>
+                                    <input-stars max="3" ng-model="desafio.nivel_inovacao" readonly="true"></input-stars>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="md-padding" layout="column" layout-sx="column" flex="100">
+                            <p ng-bind-html="desafio.descricao"></p>
+                        </div>
+                        <div class="md-padding" layout="column" layout-align="center center" flex="100">
+                            <md-button ng-show="desafio.regulamento" class="btn-amarelo botaoVagas" href="{{desafio.regulamento}}" target="_blank">
+                                <md-icon class="material-icons">&#xE2C4;</md-icon> Acessar regulamento </md-button>
+
+                        </div>
+                        <!--
+                        <div class="md-padding" layout="column" layout-align="center start" flex="100">
+                            <span class="md-headline titulo-oportunidade ">ENVIE SEUS DESAFIOS</span>
+                            <p >O envio de desafios estará disponível a partir de: {{participacaoDesafio.dataInicioEnvio}}</p>
+                        </div>-->
+                        <div class="row">
+                            <div ng-show="desafio.tipo == 0" class="md-padding" layout="column" layout-align="center start">
+                                <div ng-show="!desafio.conteudo">
+                                    <span class="md-headline">Para este desafio você deve informar o link de acesso</span>
+                                    <div class="col-lg-10 col-md-10 col-xs-12 col-sm-12">
+                                        <md-input-container class="md-block" style="width: 100%">
+                                            <input required name="link" ng-model="desafio.link" placeholder="Cole o link do desafio">
+                                        </md-input-container>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                                        <md-button type="button" class="btn btn-success btn-s" ng-click="enviarLinkDesafio(desafio)">
+                                            <span></span> Enviar
+                                        </md-button>
+                                    </div>
+                                </div>
+                                <div ng-show="desafio.conteudo">
+                                    Seu desafio foi envido. Agora é só aguardar. Boa sorte!
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div style="margin-bottom: 20px;"  ng-show="desafio.tipo == 1" class="md-padding" layout="column"
+                                layout-align="center start">
+                                <div ng-show="!desafio.conteudo" ng-controller="uploadDesafio">
+                                    <span class="md-headline">Para este desafio você deve me enviar o arquivo</span>
+                                    <input type="file" nv-file-select="" autoupload="true" uploader="uploaderDesafio" ng-change="passarParametrosEnviar(desafio)"
+                                        ng-model="blabla" />
+                                    <md-button type="button" class="md-primary md-raised" ng-click="uploaderDesafio.uploadAll()" ng-disabled="!uploaderDesafio.getNotUploadedItems().length">
+                                        Enviar
+                                    </md-button>
+                                </div>
+                                <div ng-show="desafio.conteudo">
+                                    Seu desafio foi envido. Agora é só aguardar. Boa sorte!
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,49 @@
+<div layout="row" layout-align="start center">
+    <md-button id="navigation-toggle" class="md-icon-button" hide-gt-sm ng-click="abreMenu()">
+        <md-icon class="material-icons iconeToolbar">&#xE5D2;</md-icon>
+    </md-button>
+    <div layout="row" layout-align="start center" flex hide-xs hide-sm>
+    </div>
+    <div layout="row" layout-align="start center">
+        <!--<div class="toolbar-separator"></div>
+        <md-button class="md-icon-button" ng-click="contato()" title="Entrem em contato">
+            <md-icon class="material-icons" style="color: #fff;">&#xE0BE;</md-icon>
+        </md-button>
+        <div class="toolbar-separator"></div>-->
+        <div layout="row" layout-align="space-between center">
+            <div class="avatar-wrapper" ng-cloak>
+                <md-menu-bar class="menuBarPersonalizado">
+                    <md-menu>
+                        <button ng-click="$mdMenu.open()">
+                            <md-icon class="material-icons" style="color: #fff;">&#xe8b8;</md-icon>
+                        </button>
+                        <md-menu-content>
+                            <!--<md-menu-item>
+                                <md-button ng-click="dashboard()">
+                                    Oportunidades
+                                </md-button>
+                            </md-menu-item>
+                            <md-menu-item>
+                                <md-button ng-click="perfil()">
+                                    Perfil
+                                </md-button>-->
+                            </md-menu-item>
+                            <md-menu-item>
+                                <md-button ng-click="dialogAlterarSenha($event)">
+                                    Alterar senha
+                                </md-button>
+                            </md-menu-item>
+                            <!--<md-menu-divider></md-menu-divider>
+                            <md-menu-item>
+                                <md-button ng-click="logout()">
+                                    Sair
+                                </md-button>
+                            </md-menu-item>-->
+                        </md-menu-content>
+                    </md-menu>
+                </md-menu-bar>
+            </div>
+        </div>
+        <a style="padding-right: 25px;" layout="row" layout-align="start center" ng-click="dashboard()"><img style="min-width: 117px; margin-left: 25px;" class="logoMenu cursorPointer" src="../img/eureca-amarelo-branco.png" alt="Logo Eureca"/></a>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+<div class="demo-md-panel" layout-fill layout="column">
+    <md-content layout-fill>
+        <div class="item active banner-opportunities-item">
+            <video autoplay="autoplay" class="banner-opportunities-img" height="auto" id="video-banner" preload="auto" src="http://eureca.s3.amazonaws.com/production/assets/opportunity/bannerAnimadoPlataforma-InscricoesProrrogadas-f500cc0c6aa46dcb3b73926c9a36cff6.mp4" width="auto" loop="true"></video>
+        </div>
+        <form name="dashboard" layout-fill>
+            <md-content class="md-padding" layout="row" layout-wrap>
+                <div flex="50" flex-gt-md="50" flex-xs="100" flex-sm="100" layout="column" ng-repeat="op in oportunidadesAbertas">
+                    <md-card class="oportunidade" ng-click="oportunidade(op.url)">
+                        <img class="capa" ng-src="{{diretorioImagens}}/oportunidades/{{op.idOp}}/{{op.capa}}" />
+                        <md-card-title class="titulo">
+                            <md-card-title-text>
+                                <span class="md-headline">{{op.nome}}</span>
+                                <span>De {{op.data_abertura}} a  {{op.data_encerramento}}</span>
+                            </md-card-title-text>
+                        </md-card-title>
+                        <md-card-content class="corpo">
+                            <p class="cliente">{{op.cliente}}</p>
+                        </md-card-content>
+                        <md-card-actions layout="row" layout-align="end center">
+                            <md-button class="md-icon-button" aria-label="Vendidos">
+                                <md-icon class="material-icons">&#xE855;</md-icon>
+                            </md-button>
+                            <md-button ng-click="" class="md-icon-button" aria-label="Detalhes">
+                                <md-icon class="material-icons">&#xE8FF;</md-icon>
+                            </md-button>
+                        </md-card-actions>
+                    </md-card>
+                </div>
+            </md-content>
+        </form>
+    </md-content>
+</div>

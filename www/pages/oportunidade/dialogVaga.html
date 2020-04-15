@@ -1,0 +1,61 @@
+<md-dialog flex="80">
+    <form class="ng-cloak" name="formInscricao">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Detalhes da vaga</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon aria-label="Close dialog" class="material-icons">&#xE5CD; </md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <div flex="100" layout="column" style="margin-top:8px;">
+                    <span class="md-headline titulo-oportunidade ">{{inscricao.vaga.titulo}}</span>
+                    <p class="md-padding" ng-bind-html="inscricao.vaga.descricao"></p>
+                    <span class="md-headline">Quem pode se inscrever</span>
+                    <div ng-repeat="requesito in inscricao.vaga.requesitos" ng-switch="requesito.tipo">
+                        <div ng-switch-when="1" class="requisitosDialog">
+                            <h4>
+                                <md-icon class="material-icons">&#xE80C;</md-icon> Graduação</h4>
+                            <p>Entre {{requesito.formacao_apartir}} e {{requesito.formacao_ate}}</p>
+                        </div>
+                        <div ng-switch-when="2" class="requisitosDialog">
+                            <h4>
+                                <md-icon class="material-icons">&#xE927;</md-icon> Idiomas</h4>
+                            <p>Idioma: {{requesito.idioma.display}} - {{requesito.nivel}}</p>
+                        </div>
+                        <div ng-switch-when="0" class="requisitosDialog">
+                            <h4>
+                                <md-icon class="material-icons">&#xE913;</md-icon> Cursos aceitos</h4>
+                            <p ng-repeat="curso in requesito.cursos">{{curso.display}}</p>
+                            <p ng-show="!requesito.cursos">Qualquer curso de Graduação</p>
+                        </div>
+                    </div>
+                    <div ng-repeat="pergunta in inscricao.perguntas">
+                        <md-switch class="md-primary" ng-model="pergunta.resposta" ng-required="pergunta.obrigatoria" aria-label="pergunta.pergunta">
+                            {{pergunta.pergunta}} <label ng-if="pergunta.obrigatoria"> *</label>
+                        </md-switch>
+                        
+                    </div>
+                    <md-input-container class="md-block" style="margin-top: 30px;">
+                        <label>Quem te contou primeiro sobre essa oportunidade?</label>
+                        <md-select required name="idioma" ng-model="inscricao.idSource" aria-label="Quem te contou primeiro sobre essa oportunidade?">
+                            <md-option ng-repeat="source in oportunidade.sources" value="{{source.idSource}}">
+                                {{source.descricao}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                    <div class="alert" ng-class="alerta.tipo" ng-show="alerta" flex="100" layout-align="center center">
+                        <span ng-bind-html="alerta.mensagem"></span>
+                    </div>
+                    <div flex="100" layout="column" layout-align="center center">
+                        <md-button class="md-raised md-primary btnPrincipais" ng-disabled="(formInscricao.$invalid)" ng-click="meInscreverEm(inscricao)">
+                            <md-icon class="material-icons">&#xE161;</md-icon> Essa é minha!</md-button>
+                    </div>
+                </div>
+            </div>
+        </md-dialog-content>
+    </form>
+</md-dialog>

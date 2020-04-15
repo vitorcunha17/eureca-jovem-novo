@@ -1,0 +1,72 @@
+<div class="demo-md-panel" layout-fill layout="column">
+    <md-content layout-fill>
+        <form name="formOportunidade" layout-fill>
+            <md-content class="md-padding" layout="row" layout-wrap>
+                <div flex="50" flex-gt-md="50" flex-xs="100" flex-sm="100" layout="column">
+                    <md-card class="oportunidade">
+                        <img class="capa" ng-src="{{diretorioImagens}}/oportunidades/{{oportunidade.idOp}}/{{oportunidade.capa}}" />
+                        <md-card-title class="titulo">
+                            <md-card-title-text>
+                                <span class="md-headline">{{oportunidade.nome}}</span>
+                            </md-card-title-text>
+                        </md-card-title>
+                        <md-card-content class="corpo">
+                            <p class="cliente">{{oportunidade.descricao}}</p>
+                        </md-card-content>
+                        <md-card-actions layout="row" layout-align="end center">
+                            <!--
+                            <md-button class="md-icon-button" aria-label="Vendidos">
+                                <md-icon class="material-icons">&#xE855;</md-icon>
+                            </md-button>
+                            <md-button ng-click="" class="md-icon-button" aria-label="Detalhes">
+                                <md-icon class="material-icons">&#xE8FF;</md-icon>
+                            </md-button>-->
+                            <span>De {{oportunidade.dataInicioInscricao}} a  {{oportunidade.dataFimInscricao}}</span>
+                        </md-card-actions>
+                    </md-card>
+                </div>
+                <div flex="50" flex-gt-md="50" flex-xs="100" flex-sm="100" layout="column" style="margin-top:8px;">
+                    <h1 class="opportunity-heading opportunity-heading-decorated opportunity-heading-how-to">saiba<strong>Como participar</strong></h1>
+                    <div class="md-accordion" ng-repeat="dica in oportunidade.dicas">
+                        <md-toolbar ng-init="dica.expanded = dica.destaque" ng-click="collapseAll(dica)">
+                            <div class="md-toolbar-tools titulo">
+                                <h2><span>{{dica.titulo}}</span></h2>
+                                <span flex=""></span>
+                                <span ng-class="{expandCollapse:true, active:dica.expanded}"></span>
+                            </div>
+                        </md-toolbar>
+                        <div ng-class="{dataContent:true, activeContent:dica.expanded}">{{dica.descricao}}</div>
+                        <div>
+                        </div>
+                    </div>
+                </div>
+                <div flex="100" flex-gt-md="100" flex-xs="100" flex-sm="100" layout="column" style="margin-top:8px;">
+                    <h1 class="opportunity-heading opportunity-heading-decorated opportunity-heading-how-to">conheça mais<strong>{{oportunidade.nome}}</strong></h1>
+                    <div layout="row" layout-wrap>
+                        <md-card class="oportunidade intro" ng-repeat="anexo in imagensIntro" ng-click="showDialog($event,anexo)" ng-controller="dialogCtrl">
+                            <img class="capa" ng-src="{{diretorioImagens}}/oportunidades/{{oportunidade.idOp}}/{{anexo.arquivo}}" />
+                        </md-card>
+                    </div>
+                </div>
+                <div flex="100" flex-gt-md="100" flex-xs="100" flex-sm="100" layout="column" style="margin-top:8px;">
+                    <h1 class="opportunity-heading opportunity-heading-decorated opportunity-heading-how-to">etapas da<strong>Oportunidade</strong></h1>
+                    <timeline>
+                        <timeline-event ng-repeat="item in timeline" side>
+                            <timeline-badge class="timeline-hidden" style="background-color:{{item.bg}}" when-visible="animateElementIn" when-not-visible="animateElementOut">
+                                <i class="material-icons iconeTimeLine">{{item.icone}}</i>
+                            </timeline-badge>
+                            <timeline-panel class="timeline-hidden" when-visible="animateElementIn" when-not-visible="animateElementOut">
+                                <p>{{item.data}}</p>
+                                <small style="font-size: 10px;" class="text-muted ng-binding"><i class="fa fa-clock-o"></i>{{item.descricao}}</small>
+                            </timeline-panel>
+                        </timeline-event>
+                    </timeline>
+                </div>
+                <div flex="100" layout="column" layout-align="center center">
+                    <md-button ng-disabled="formOportunidade.$invalid" class="md-raised md-primary btnPrincipais" ng-click="abrirDialogVagas($event)">
+                        <md-icon class="material-icons">&#xE161;</md-icon> Quero me inscrever</md-button>
+                </div>
+            </md-content>
+        </form>
+    </md-content>
+</div>
